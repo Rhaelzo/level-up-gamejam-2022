@@ -18,7 +18,7 @@ public class ListenableContainerData
 
     public void Initialize()
     {
-        if (!IsInitialized)
+        if (IsInitialized)
         {
             Debug.LogWarning("Data is already serialized. Skipping...");
             return;
