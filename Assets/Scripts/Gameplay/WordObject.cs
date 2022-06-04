@@ -30,7 +30,6 @@ public class WordObject : MonoBehaviour
         Word = word;
         _isInitialized = true;
         _wordText.text = Word.Value;
-        _wordText.font = Word.Font;
     }
 
     public void Event_OnInputValueChanged(object eventData)
