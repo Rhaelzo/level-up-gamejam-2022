@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4781665865764516005}
   - component: {fileID: 4781665865764516004}
+  - component: {fileID: 3483590286367376999}
+  - component: {fileID: 8639623915737427424}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -48,6 +50,75 @@ MonoBehaviour:
   <Health>k__BackingField: 0
   _characterType: 1
   _onCharacterDeath: {fileID: 11400000, guid: 6f4b7f655a61ca14ca1ec247b4494228, type: 2}
+--- !u!114 &3483590286367376999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4781665865764516007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6b10207efd2d4499482598f793d067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitPercentage: 0.5
+  _timeBetweenTry: 0.05
+  _currentTimeBetweenTries: 0
+  _turnVariable: {fileID: 11400000, guid: b8ecbb859e3ea684393173935e758002, type: 2}
+  _currentWordObject: {fileID: 0}
+  _pauseVariable: {fileID: 11400000, guid: e5262d2394073784497c29d65f06a41f, type: 2}
+  _currentlyFormedWord: 
+  _enemyTurn: 0
+--- !u!114 &8639623915737427424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4781665865764516007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aad0d7942f774233b8947d961c5fd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerData:
+  - <Listenable>k__BackingField: {fileID: 11400000, guid: b8ecbb859e3ea684393173935e758002, type: 2}
+    <Response>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3483590286367376999}
+          m_TargetAssemblyTypeName: EnemyAI, Assembly-CSharp
+          m_MethodName: Event_TurnShift
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    <CallbackData>k__BackingField:
+      <ListenerID>k__BackingField: 
+  - <Listenable>k__BackingField: {fileID: 11400000, guid: c1cfad682cebff44a82256bd095495b8, type: 2}
+    <Response>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3483590286367376999}
+          m_TargetAssemblyTypeName: EnemyAI, Assembly-CSharp
+          m_MethodName: Event_OnWordFinished
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    <CallbackData>k__BackingField:
+      <ListenerID>k__BackingField: 
 --- !u!1 &5826609395045572648
 GameObject:
   m_ObjectHideFlags: 0

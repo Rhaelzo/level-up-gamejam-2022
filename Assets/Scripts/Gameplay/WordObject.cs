@@ -64,7 +64,7 @@ public class WordObject : MonoBehaviour
     private void FinishWord()
     {
         int result = (int)(Word.Points * Word.Multiplier);
-        _onWordFinished.Event_Raise(result);
+        _onWordFinished.Event_Raise(new object[] { Word.Value, result });
         // TODO wait a few seconds, blow up, deal damage and back
         // to pool
     }
