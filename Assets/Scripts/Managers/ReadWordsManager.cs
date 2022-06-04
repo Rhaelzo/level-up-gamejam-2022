@@ -1,19 +1,27 @@
 using UnityEngine;
+using System.IO;
+using System.Collections.Generic;
 
 public class ReadWordsManager : MonoBehaviour 
 {
-    private void OnAwake() 
+    public static List<Word> AllInsults = new List<Word>();
+
+    private void Awake()
     {
-          
+        ReadInsultsFromFile();
     }
 
-    public static void ReadString()
-   {
-    //    string path = Application.persistentDataPath + "/test.txt";
-    //    //Read the text from directly from the test.txt file
-    //    StreamReader reader = new StreamReader(path);
-    //    Debug.Log(reader.ReadToEnd());
-    //    reader.Close();
-   }
+    public static void ReadInsultsFromFile()
+    {
+        using (StreamReader sr = new StreamReader("Assets/Words/insults.txt"))
+        {
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] lineParts = line.Split(',');
+                AllInsults.Add(new Word(lineParts[0], ))
+            }
+        }
+    }
 
 }
