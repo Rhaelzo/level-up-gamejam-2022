@@ -9,11 +9,11 @@ public class ReadWordsManager : MonoBehaviour
 
     public static void ReadString()
    {
-       string path = Application.persistentDataPath + "/test.txt";
-       //Read the text from directly from the test.txt file
-       StreamReader reader = new StreamReader(path);
-       Debug.Log(reader.ReadToEnd());
-       reader.Close();
+    //    string path = Application.persistentDataPath + "/test.txt";
+    //    //Read the text from directly from the test.txt file
+    //    StreamReader reader = new StreamReader(path);
+    //    Debug.Log(reader.ReadToEnd());
+    //    reader.Close();
    }
 
 }
