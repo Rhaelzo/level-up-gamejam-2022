@@ -8,7 +8,7 @@ public class test : MonoBehaviour
     void Start()
     {
         Debug.Log("Pedro");
-        Debug.Log(ReadWordsManager.AllInsults[0]);
+        Debug.Log(WordObjectsManager.getRandom(1)[0].Word.Value);
     }
 
     // Update is called once per frame
