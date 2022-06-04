@@ -8,7 +8,7 @@ public class Word
     public string Value { get; private set; }
 
     [field: SerializeField, ReadOnly]
-    public Font Font { get; private set; }
+    public Font Font { get; private set; } = Resources.GetBuiltinResource<Font>("Arial.ttf");
 
     [field: SerializeField, ReadOnly]
     public int Points { get; private set; }
@@ -16,10 +16,9 @@ public class Word
     [field: SerializeField, ReadOnly]
     public float Multiplier { get; private set; }
 
-    public Word(string value, Font font, float multiplier)
+    public Word(string value, float multiplier)
     {
         Value = string.IsNullOrEmpty(value) ? "Default" : value;
-        Font = font;
         Points = Value.Length;
         Multiplier = multiplier;
     }
@@ -27,5 +26,10 @@ public class Word
     public bool MatchStart(string otherValue)
     {
         return Value.StartsWith(otherValue);
+    }
+
+    public override string ToString()
+    {
+        return "Value: " + Value + " Font: " + Font.ToString() + " Points: " + Points + " Multiplier: " + Multiplier;
     }
 }
