@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Timer : MonoBehaviour
+public class Timer : MonoBehaviour, IPausable
 {
-    [SerializeField, ReadOnly]
-    private float _currentTime;
+    [field: SerializeField]
+    public BoolVariableSO PauseVariable { get; private set; }
 
     [SerializeField, Range(10, 20)]
     private float _startingTurnsTime = 10f;
@@ -12,7 +13,17 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private GameEvent _onTurnEnd;
 
+    [SerializeField]
+    private UnityEvent _changeToOverloadUI;
+    
+    [SerializeField, ReadOnly]
+    private float _currentTime;
+
+    [SerializeField, ReadOnly]
     private bool _isCounting;
+
+    [SerializeField, ReadOnly]
+    private bool _overLoadReached;
 
     private void Awake()
     {
@@ -22,6 +33,10 @@ public class Timer : MonoBehaviour
 
     private void Update() 
     {
+        if (PauseVariable.RuntimeValue || _overLoadReached)
+        {
+            return;
+        }
         if (_isCounting)
         {
             _currentTime = Math.Max(_currentTime - Time.deltaTime, 0f);
@@ -72,5 +87,12 @@ public class Timer : MonoBehaviour
     {
         float processedTimeToAdd = Math.Abs(timeToReduce);
         _currentTime = Math.Max(_currentTime - timeToReduce, 0f);
+    }
+
+    public void Event_OverloadStart(object eventData)
+    {
+        _isCounting = false;
+        _overLoadReached = true;
+        _changeToOverloadUI.Invoke();
     }
 }
