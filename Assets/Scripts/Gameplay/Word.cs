@@ -9,7 +9,7 @@ public class Word
     public string Value { get; private set; }
 
     [field: SerializeField, ReadOnly]
-    public TMP_FontAsset Font { get; private set; } = Resources.GetBuiltinResource<Font>("Arial.ttf");
+    public TMP_FontAsset Font { get; private set; }
 
     [field: SerializeField, ReadOnly]
     public int Points { get; private set; }
@@ -33,7 +33,7 @@ public class Word
     {
         return "Value: " + Value + " Font: " + Font.ToString() + " Points: " + Points + " Multiplier: " + Multiplier;
     }
-    
+
     public bool IsMatch(string otherValue)
     {
         return Value.ToLower() == otherValue.ToLower();
