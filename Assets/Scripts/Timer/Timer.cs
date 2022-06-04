@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour, IPausable
 {
@@ -12,6 +13,9 @@ public class Timer : MonoBehaviour, IPausable
 
     [SerializeField]
     private GameEvent _onTurnEnd;
+
+    [SerializeField]
+    private Image _timerBar;
 
     [SerializeField]
     private UnityEvent _changeToOverloadUI;
@@ -40,6 +44,7 @@ public class Timer : MonoBehaviour, IPausable
         if (_isCounting)
         {
             _currentTime = Math.Max(_currentTime - Time.deltaTime, 0f);
+            _timerBar.fillAmount = _currentTime / _startingTurnsTime;
             if (_currentTime == 0f)
             {
                 _isCounting = false;
@@ -50,7 +55,14 @@ public class Timer : MonoBehaviour, IPausable
 
     public void Event_ResetTime(object eventData)
     {
-        ResetTime();
+        if (eventData is Turn value)
+        {
+            if (value == Turn.Both)
+            {
+                return;
+            }
+            ResetTime();
+        }
     }
 
     private void ResetTime()

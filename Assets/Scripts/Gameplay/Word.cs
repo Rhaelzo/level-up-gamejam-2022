@@ -41,6 +41,6 @@ public class Word
 
     public string Substring(string otherValue)
     {
-        return Value.Substring(otherValue.Length - 1);
+        return Value.Substring(otherValue.Length);
     }
 }

@@ -47,6 +47,7 @@ public class TurnManager : MonoBehaviour
                 _currentTurnCount++;
                 if (_currentTurnCount >= _numberOfTurns)
                 {
+                    _turnVariable.RuntimeValue = Turn.Both;
                     _onOverloadTurnsReached.Event_Raise();
                     return;
                 }

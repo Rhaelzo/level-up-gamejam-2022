@@ -7,23 +7,13 @@ public class WordObject : MonoBehaviour
     public Word Word { get; private set; }
 
     [SerializeField]
-    private TextMeshProUGUI _wordText;
+    private TextMeshPro _wordText;
     
     [SerializeField]
     private GameEvent _onWordFinished;
 
     [SerializeField, ReadOnly]
     private bool _isInitialized;
-
-    private void Awake() 
-    {
-        if (!_isInitialized)
-        {
-            Debug.LogWarning("Word object was not initialized.");
-            return;
-        }
-        Debug.Log("Do stuff");    
-    }
 
     public void Initialize(Word word)
     {
@@ -39,25 +29,28 @@ public class WordObject : MonoBehaviour
             Debug.LogWarning("Word object was not initialized.");
             return;
         }
-        if (eventData is string value)
+        if (eventData == null)
         {
-            if (string.IsNullOrWhiteSpace(value) 
-                || value == string.Empty)
-            {
-                Debug.LogWarning("Received invalid value from input.");
-                return;
-            }
-            if (!Word.MatchStart(value))
-            {
-                ResetVisuals();
-            }
-            UpdateVisuals(value);
-            if (Word.IsMatch(value))
-            {
-                FinishWord();
-            }
+            Debug.LogError("Received value is null.");
+            return;
         }
-        Debug.LogError("Received value is not a string.");
+        string value = eventData.ToString();
+        if (string.IsNullOrWhiteSpace(value) 
+            || value == string.Empty)
+        {
+            Debug.LogWarning("Received invalid value from input.");
+            return;
+        }
+        if (!Word.MatchStart(value))
+        {
+            ResetVisuals();
+            return;
+        }
+        UpdateVisuals(value);
+        if (Word.IsMatch(value))
+        {
+            FinishWord();
+        }
     }
 
     private void FinishWord()
@@ -75,13 +68,13 @@ public class WordObject : MonoBehaviour
 
     private void UpdateVisuals(string value)
     {
-        string textToShow = $"<color = red>{value}</color>{Word.Substring(value)}";
+        string textToShow = $"<color=red>{value}</color>{Word.Substring(value)}";
         _wordText.text = textToShow;
         // TODO Add some shaking
     }
 
-    private void ResetObject()
+    public void ResetObject()
     {
-        // TODO
+        ResetVisuals();
     }
 }

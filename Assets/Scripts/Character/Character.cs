@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour, IDamageable
 {
@@ -13,12 +14,16 @@ public class Character : MonoBehaviour, IDamageable
     private CharacterType _characterType;
 
     [SerializeField]
+    private Image _healthBar;
+
+    [SerializeField]
     private GameEvent _onCharacterDeath;
 
     public void IncreaseHealth(int amount)
     {
         int processedAmount = Math.Abs(amount);
         Health = Math.Max(Health + processedAmount, MaxHealth);
+        UpdateUI();
     }
 
     public void ReduceHealth(int amount)
@@ -29,5 +34,10 @@ public class Character : MonoBehaviour, IDamageable
         {
             _onCharacterDeath.Event_Raise(_characterType);
         }
+    }
+
+    private void UpdateUI()
+    {
+        _healthBar.fillAmount = Health / MaxHealth;
     }
 }

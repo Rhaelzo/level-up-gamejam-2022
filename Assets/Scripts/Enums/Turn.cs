@@ -5,5 +5,6 @@ public enum Turn
 {
     Player,
     Enemy,
+    Both,
     None
 }

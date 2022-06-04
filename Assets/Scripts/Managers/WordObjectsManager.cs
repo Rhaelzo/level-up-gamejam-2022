@@ -1,51 +1,71 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class WordObjectsManager : MonoBehaviour 
 {
-    private static List<WordObject> AllWordObjects = new List<WordObject>();
-    private static List<int> IndexesAlreadyVisited = new List<int>();
+    private static List<WordObject> s_allWordObjects;
+    private static List<int> s_indexesInUse;
 
     [SerializeField] WordObject prefab;
 
     private void Awake()
     {
-        ReadInsultsFromFile("Assets/Words/insults.txt");
-        // AllInsults.ForEach(Debug.Log);
-        SceneManager.LoadScene("InsultsTest");
+        s_allWordObjects = new List<WordObject>();
+        s_indexesInUse = new List<int>();
+        ReadInsultsFromFile("Assets/Words/insults_test.txt", prefab);
     }
 
-    private void ReadInsultsFromFile(string path)
+    private static void ReadInsultsFromFile(string path, WordObject wordObjectPrefab)
     {
         using (StreamReader sr = new StreamReader(path))
         {
-            string line;
+            string line = string.Empty;
             while ((line = sr.ReadLine()) != null)
             {
-                Debug.Log(line);
-                if (string.IsNullOrEmpty(line)){
+                if (line == string.Empty)
+                {
                     continue;
                 }
                 string[] lineParts = line.Split(',');
-
-                WordObject wo = Instantiate<WordObject>(prefab);
-                wo.Initialize(new Word(lineParts[0], lineParts[1] == "0" ? 1 : (float) 2.5 ));
-                AllWordObjects.Add(wo);
+                WordObject wordObject = Instantiate<WordObject>(wordObjectPrefab);
+                wordObject.Initialize(new Word(lineParts[0], lineParts[1] == "0" ? 1f : 1.5f));
+                wordObject.gameObject.SetActive(false);
+                s_allWordObjects.Add(wordObject);
             }
         }
     }
 
-    public static List<WordObject> getRandom(int n){
-        List<WordObject> toRet = new List<WordObject>();
-        for (int i = 0; i < n; i++){
-            int randIndex = Random.Range(0, AllWordObjects.Count);
-
-            IndexesAlreadyVisited.Add(randIndex);
-            toRet.Add(AllWordObjects[randIndex]);
+    public static List<WordObject> GetRandom(int numberOfObjects){
+        List<WordObject> result = new List<WordObject>();
+        for (int i = 0; i < numberOfObjects; i++)
+        {
+            result.Add(GetRandom());
         }
-        return toRet;
+        return result;
     }
 
+    public static WordObject GetRandom()
+    {
+        int randIndex = Random.Range(0, s_allWordObjects.Count);
+        while (CheckInUse(randIndex))
+        {
+            randIndex = Random.Range(0, s_allWordObjects.Count);
+        }
+        s_indexesInUse.Add(randIndex);
+        return s_allWordObjects[randIndex];
+    }
+
+    public static void ReturnToPool(WordObject wordObject)
+    {
+        int index = s_allWordObjects.IndexOf(wordObject);
+        wordObject.ResetObject();
+        wordObject.gameObject.SetActive(false);
+        s_indexesInUse.Remove(index);
+    }
+
+    private static bool CheckInUse(int index)
+    {
+        return s_indexesInUse.Contains(index);
+    }
 }

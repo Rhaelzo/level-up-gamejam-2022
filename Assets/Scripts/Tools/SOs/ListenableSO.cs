@@ -8,9 +8,9 @@ public class ListenableSO : ScriptableObject, IListenable
 
     public virtual void Event_Raise(object eventData = null)
     {
-        foreach (ListenerCallbackData listenerCallbackData in callbacks)
+        for (int i = 0; i < callbacks.Count; i++)
         {
-            listenerCallbackData.Callback.Invoke(eventData);
+            callbacks[i].Callback.Invoke(eventData);
         }
     }
 
