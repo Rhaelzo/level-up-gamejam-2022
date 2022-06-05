@@ -12,6 +12,9 @@ public class WordObject : MonoBehaviour
     [SerializeField]
     private GameEvent _onWordFinished;
 
+    [field: SerializeField, ReadOnly]
+    public CharacterType Target { get; set; } = CharacterType.None;
+
     [SerializeField, ReadOnly]
     private bool _isInitialized;
 
@@ -56,7 +59,7 @@ public class WordObject : MonoBehaviour
     private void FinishWord()
     {
         int result = (int)(Word.Points * Word.Multiplier);
-        _onWordFinished.Event_Raise(new object[] { Word.Value, result });
+        _onWordFinished.Event_Raise(new object[] { Word.Value, result, Target });
         // TODO wait a few seconds, blow up, deal damage and back
         // to pool
     }

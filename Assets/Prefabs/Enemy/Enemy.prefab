@@ -68,6 +68,7 @@ MonoBehaviour:
   _turnVariable: {fileID: 11400000, guid: b8ecbb859e3ea684393173935e758002, type: 2}
   _currentWordObject: {fileID: 0}
   _pauseVariable: {fileID: 11400000, guid: e5262d2394073784497c29d65f06a41f, type: 2}
+  _gameEndVariable: {fileID: 11400000, guid: 6ef79c65d71efdc4cbfdd64c51b8fe71, type: 2}
   _spawnPoint: {fileID: 5639518447259353715}
   _currentlyFormedWord: 
   _enemyTurn: 0
@@ -108,6 +109,18 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 5346190799284364705}
           m_TargetAssemblyTypeName: EnemyAI, Assembly-CSharp
+          m_MethodName: Event_OnWordFinished
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7369818064117622142}
+          m_TargetAssemblyTypeName: Character, Assembly-CSharp
           m_MethodName: Event_OnWordFinished
           m_Mode: 0
           m_Arguments:

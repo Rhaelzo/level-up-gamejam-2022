@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     private GameEvent _initializeSystems;
 
     [SerializeField]
-    private GameEvent _gameEnd;
+    private BoolVariableSO _gameEnd;
 
     private void Start()
     {
@@ -15,16 +15,21 @@ public class GameManager : MonoBehaviour
 
     public void Event_GameEnd(object eventData)
     {
-        if (eventData is CharacterType characterType)
+        if (eventData is object[] dataArray)
         {
-            GameEnd(characterType);
+            if (dataArray[0] is CharacterType characterType)
+            {
+                GameEnd(characterType);
+                return;
+            }
+            Debug.LogError("Received data was not a character type.");
         }
-        Debug.LogError("Received data was not a character type.");
     }
 
     private void GameEnd(CharacterType characterType)
     {
         bool gameWon = characterType == CharacterType.Enemy;
-        _gameEnd.Event_Raise(gameWon);
+        Debug.Log("Hello");
+        _gameEnd.RuntimeValue = true;
     }
 }
