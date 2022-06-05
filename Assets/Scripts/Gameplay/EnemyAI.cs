@@ -117,6 +117,10 @@ public class EnemyAI : MonoBehaviour
 
     private void StartTurn()
     {
+        if (_turnVariable.RuntimeValue == Turn.Both)
+        {
+            _timeBetweenTry = 0.15f;
+        }
         _enemyTurn = true;
         _currentTimeBetweenTries = 0f;
         _stringBuilder.Clear();
