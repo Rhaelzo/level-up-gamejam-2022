@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     private void GameEnd(CharacterType characterType)
     {
         bool gameWon = characterType == CharacterType.Enemy;
-        Debug.Log("Hello");
         _gameEnd.RuntimeValue = true;
     }
 }

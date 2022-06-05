@@ -17,9 +17,10 @@ public class Word
     [field: SerializeField, ReadOnly]
     public float Multiplier { get; private set; }
 
-    public Word(string value, float multiplier)
+    public Word(string value, float multiplier, TMP_FontAsset font)
     {
         Value = string.IsNullOrEmpty(value) ? "Default" : value;
+        Font = font;
         Points = Value.Length;
         Multiplier = multiplier;
     }

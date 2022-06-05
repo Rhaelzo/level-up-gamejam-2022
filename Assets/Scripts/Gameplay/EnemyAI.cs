@@ -89,13 +89,16 @@ public class EnemyAI : MonoBehaviour
     {
         switch (_turnVariable.RuntimeValue)
         {
-            case Turn.Player:
-                EndTurn();
-                break;
             case Turn.Enemy:
+            case Turn.Both:
                 StartTurn();
                 break;
         }
+    }
+
+    public void Event_EndTurn()
+    {
+        EndTurn();
     }
 
     private void EndTurn()
