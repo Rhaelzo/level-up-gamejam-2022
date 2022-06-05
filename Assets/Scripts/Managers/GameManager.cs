@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,17 @@ public class GameManager : MonoBehaviour
     private void GameEnd(CharacterType characterType)
     {
         bool gameWon = characterType == CharacterType.Enemy;
+
+        if(gameWon){
+            PlayerPrefs.SetInt("playerWon", 1);
+        }
+        else {
+            PlayerPrefs.SetInt("playerWon", 0); 
+        }
+
+        PlayerPrefs.SetFloat("score", 0f);
+
         _gameEnd.RuntimeValue = true;
+        SceneManager.LoadScene("EndScreen");
     }
 }

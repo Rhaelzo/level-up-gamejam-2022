@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: f374ce930675c3a48adff1a26b23fa53
   - enabled: 0
     path: Assets/Scenes/InsultsTest.unity
     guid: cf9b731188f8a0549831503db7e5419b

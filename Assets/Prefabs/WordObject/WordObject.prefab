@@ -52,6 +52,7 @@ MonoBehaviour:
     <Multiplier>k__BackingField: 0
   _wordText: {fileID: 4698053168603252985}
   _onWordFinished: {fileID: 11400000, guid: c1cfad682cebff44a82256bd095495b8, type: 2}
+  <Target>k__BackingField: 2
   _isInitialized: 0
 --- !u!114 &-1560755974796438099
 MonoBehaviour:
@@ -211,8 +212,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4698053168521313371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.12768}
+  m_LocalScale: {x: 0.7446396, y: 0.7446396, z: 0.7446396}
   m_Children:
   - {fileID: 4698053168603252984}
   m_Father: {fileID: 4698053168422038816}
@@ -401,8 +402,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 5.5
+  m_fontSizeBase: 5.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
