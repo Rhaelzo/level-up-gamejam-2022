@@ -327,7 +327,6 @@ GameObject:
   m_Component:
   - component: {fileID: 418343529}
   - component: {fileID: 418343530}
-  - component: {fileID: 418343532}
   - component: {fileID: 418343531}
   m_Layer: 0
   m_Name: MainMenu
@@ -376,11 +375,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: ba2e286952d25b646be73d4344749a4a, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -462,23 +461,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &418343532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418343528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ba56335ce048446b62122abd97d9c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <PauseVariable>k__BackingField: {fileID: 11400000, guid: e5262d2394073784497c29d65f06a41f, type: 2}
-  _audioSource: {fileID: 418343531}
-  _audioClips:
-  - {fileID: 8300000, guid: ba2e286952d25b646be73d4344749a4a, type: 3}
-  _currentSoundTime: 0
 --- !u!1 &667857733
 GameObject:
   m_ObjectHideFlags: 0
