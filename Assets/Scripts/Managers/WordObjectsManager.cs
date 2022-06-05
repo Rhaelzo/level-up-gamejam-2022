@@ -1,22 +1,27 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using TMPro;
 
 public class WordObjectsManager : MonoBehaviour 
 {
     private static List<WordObject> s_allWordObjects;
     private static List<int> s_indexesInUse;
 
-    [SerializeField] WordObject prefab;
+    [SerializeField] 
+    private WordObject prefab;
+
+    [SerializeField]
+    private TMP_FontAsset[] _availableFonts;
 
     private void Awake()
     {
         s_allWordObjects = new List<WordObject>();
         s_indexesInUse = new List<int>();
-        ReadInsultsFromFile("Assets/Words/insults.txt", prefab);
+        ReadInsultsFromFile("Assets/Words/insults.txt", prefab, _availableFonts);
     }
 
-    private static void ReadInsultsFromFile(string path, WordObject wordObjectPrefab)
+    private static void ReadInsultsFromFile(string path, WordObject wordObjectPrefab, TMP_FontAsset[] availableFonts)
     {
         using (StreamReader sr = new StreamReader(path))
         {
@@ -29,7 +34,8 @@ public class WordObjectsManager : MonoBehaviour
                 }
                 string[] lineParts = line.Split(',');
                 WordObject wordObject = Instantiate<WordObject>(wordObjectPrefab);
-                wordObject.Initialize(new Word(lineParts[0], lineParts[1] == "0" ? 1f : 1.5f));
+                wordObject.Initialize(new Word(lineParts[0], lineParts[1] == "0" ? 1f : 1.5f
+                    , availableFonts[Random.Range(0, availableFonts.Length)]));
                 wordObject.gameObject.SetActive(false);
                 s_allWordObjects.Add(wordObject);
             }

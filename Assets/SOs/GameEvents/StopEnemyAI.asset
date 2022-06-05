@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ba4e21a938a01d4cb5deceb32bc029f, type: 3}
-  m_Name: TurnVariableSO
+  m_Script: {fileID: 11500000, guid: 54698ade4eebc46f99f50a2c28364d60, type: 3}
+  m_Name: StopEnemyAI
   m_EditorClassIdentifier: 
-  defaultValue: 1

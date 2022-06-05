@@ -22,7 +22,12 @@ public class WordObject : MonoBehaviour
     {
         Word = word;
         _isInitialized = true;
+        _wordText.font = Word.Font;
         _wordText.text = Word.Value;
+        if (Word.Multiplier != 1f)
+        {
+            _wordText.fontWeight = FontWeight.Bold;
+        }
     }
 
     public void Event_OnInputValueChanged(object eventData)
