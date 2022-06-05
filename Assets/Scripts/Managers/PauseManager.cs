@@ -4,6 +4,9 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField]
     private BoolVariableSO _pauseVariable;
+
+    [SerializeField]
+    private BoolVariableSO _gameEndVariable;
     
     [SerializeField, ReadOnly]
     private bool _isInitialized = false;
@@ -21,6 +24,11 @@ public class PauseManager : MonoBehaviour
     private void Update() 
     {
         if (!_isInitialized)
+        {
+            return;
+        }
+        
+        if (_gameEndVariable.RuntimeValue)
         {
             return;
         }

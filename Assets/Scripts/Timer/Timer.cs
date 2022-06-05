@@ -8,6 +8,9 @@ public class Timer : MonoBehaviour, IPausable
     [field: SerializeField]
     public BoolVariableSO PauseVariable { get; private set; }
 
+    [SerializeField]
+    private BoolVariableSO _gameEndVariable;
+
     [SerializeField, Range(10, 20)]
     private float _startingTurnsTime = 10f;
 
@@ -37,6 +40,10 @@ public class Timer : MonoBehaviour, IPausable
 
     private void Update() 
     {
+        if (_gameEndVariable.RuntimeValue)
+        {
+            return;
+        }
         if (PauseVariable.RuntimeValue || _overLoadReached)
         {
             return;
@@ -76,6 +83,7 @@ public class Timer : MonoBehaviour, IPausable
         if (eventData is float timeToAdd)
         {
             AddTime(timeToAdd);
+            return;
         }
         Debug.LogError("Time to add was NaN");
     }
@@ -91,6 +99,7 @@ public class Timer : MonoBehaviour, IPausable
         if (eventData is float timeToReduce)
         {
             ReduceTime(timeToReduce);
+            return;
         }
         Debug.LogError("Time to add was NaN");
     }

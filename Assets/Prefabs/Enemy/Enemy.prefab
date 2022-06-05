@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &742993595071117672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6351675891617579493}
+  m_Layer: 0
+  m_Name: DamageSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6351675891617579493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742993595071117672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4781665865764516005}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2355723996204857456
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,6 +80,16 @@ MonoBehaviour:
   _characterType: 1
   _healthBar: {fileID: 7864429682106046325}
   _onCharacterDeath: {fileID: 11400000, guid: 6f4b7f655a61ca14ca1ec247b4494228, type: 2}
+  _maxSpawnRadius: 1.7
+  _minSpawnRadius: 0.8
+  _maxFontSize: 10
+  _minFontSize: 5
+  _damagePrefab: {fileID: 6543277310424281880, guid: 33a33663b6b949f4aad4fef1ab10209b, type: 3}
+  _damageSpawnCenter: {fileID: 6351675891617579493}
+  _damageFonts:
+  - {fileID: 11400000, guid: 050b1331f30c8e7499ee733e5b281cfe, type: 2}
+  - {fileID: 11400000, guid: 7ccae7616a6cab5429811b94baad6836, type: 2}
+  - {fileID: 11400000, guid: 82c0f520b5abd1b49acc518a0a660221, type: 2}
 --- !u!114 &5346190799284364705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,14 +102,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6b10207efd2d4499482598f793d067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPercentage: 0.95
-  _timeBetweenTry: 0.1
+  _hitPercentage: 0.715
+  _timeBetweenTry: 0.45
   _currentTimeBetweenTries: 0
   _turnVariable: {fileID: 11400000, guid: b8ecbb859e3ea684393173935e758002, type: 2}
   _currentWordObject: {fileID: 0}
   _pauseVariable: {fileID: 11400000, guid: e5262d2394073784497c29d65f06a41f, type: 2}
+  _gameEndVariable: {fileID: 11400000, guid: 6ef79c65d71efdc4cbfdd64c51b8fe71, type: 2}
   _spawnPoint: {fileID: 5639518447259353715}
-  _currentlyFormedWord: 
   _enemyTurn: 0
 --- !u!114 &7250849660485260864
 MonoBehaviour:
@@ -118,6 +158,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7369818064117622142}
+          m_TargetAssemblyTypeName: Character, Assembly-CSharp
+          m_MethodName: Event_OnWordFinished
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     <CallbackData>k__BackingField:
       <ListenerID>k__BackingField: 
 --- !u!1 &4781665865764516007
@@ -151,6 +203,7 @@ Transform:
   - {fileID: 8791761519257969311}
   - {fileID: 5827441981970007785}
   - {fileID: 5639518447259353715}
+  - {fileID: 6351675891617579493}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

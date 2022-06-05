@@ -23,10 +23,10 @@ public class EnemyAI : MonoBehaviour
     private BoolVariableSO _pauseVariable;
 
     [SerializeField]
-    private Transform _spawnPoint;
+    private BoolVariableSO _gameEndVariable;
 
-    [SerializeField, ReadOnly]
-    private string _currentlyFormedWord;
+    [SerializeField]
+    private Transform _spawnPoint;
 
     [SerializeField, ReadOnly]
     private bool _enemyTurn;
@@ -41,6 +41,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Update() 
     {
+        if (_gameEndVariable.RuntimeValue)
+        {
+            return;
+        }
         if (_pauseVariable.RuntimeValue)
         {
             return;
@@ -116,6 +120,7 @@ public class EnemyAI : MonoBehaviour
         _currentWordObject = GetNewObject();
         _currentWordObject.transform.position = _spawnPoint.position;
         _currentWordObject.GetComponent<Listener>().enabled = false;
+        _currentWordObject.Target = CharacterType.Player;
         _currentWordObject.gameObject.SetActive(true);
     }
 
@@ -129,7 +134,7 @@ public class EnemyAI : MonoBehaviour
 
         if (eventData is object[] dataArray)
         {
-            if (dataArray.Length != 2)
+            if (dataArray.Length != 3)
             {
                 Debug.LogError("Wrong amount of data received.");
                 return;
@@ -142,6 +147,7 @@ public class EnemyAI : MonoBehaviour
                 newWordObject.transform.position = _spawnPoint.position;
                 newWordObject.GetComponent<Listener>().enabled = false;
                 newWordObject.gameObject.SetActive(true);
+                newWordObject.Target = CharacterType.Player;
                 _stringBuilder.Clear();
                 return;
             }

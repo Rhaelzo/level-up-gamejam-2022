@@ -4,5 +4,6 @@ using System;
 public enum CharacterType
 {
     Player,
-    Enemy
+    Enemy, 
+    None
 }

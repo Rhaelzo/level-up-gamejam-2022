@@ -10,7 +10,7 @@ public class WordsManager : MonoBehaviour
     private int _currentWordsCount;
     
     [SerializeField, ReadOnly]
-    private List<WordObject> _currentlyLoadedObjects;
+    private WordObject[] _currentlyLoadedObjects;
 
     [SerializeField]
     private List<Transform> _spawnPoints;
@@ -31,7 +31,7 @@ public class WordsManager : MonoBehaviour
             Debug.LogError("Word processor is already initialized.");
             return;
         }
-        _currentlyLoadedObjects = new List<WordObject>();
+        _currentlyLoadedObjects = new WordObject[_maxWordsOnScreen];
         _isInitialized = true;
     }
 
@@ -45,7 +45,7 @@ public class WordsManager : MonoBehaviour
 
         if (eventData is object[] dataArray)
         {
-            if (dataArray.Length != 2)
+            if (dataArray.Length != 3)
             {
                 Debug.LogError("Wrong amount of data received.");
                 return;
@@ -54,7 +54,7 @@ public class WordsManager : MonoBehaviour
             {
                 int index = 0;
                 WordObject wordObject = null;
-                for (index = 0; index < _currentlyLoadedObjects.Count; index++)
+                for (index = 0; index < _maxWordsOnScreen; index++)
                 {
                     if (_currentlyLoadedObjects[index].Word.Value == value)
                     {
@@ -67,17 +67,17 @@ public class WordsManager : MonoBehaviour
                     Debug.LogWarning("No word object found with value: " + value);
                     return;
                 }
-                _currentlyLoadedObjects.Remove(wordObject);
-                _currentWordsCount = _currentlyLoadedObjects.Count;
-                if (_currentWordsCount < _maxWordsOnScreen)
-                {
-                    WordObject newObject = LoadNewObject();
-                    newObject.gameObject.transform.position = _spawnPoints[index].position;
-                    newObject.gameObject.SetActive(true);
-                    _currentlyLoadedObjects.Add(newObject);
-                }
-                _myWordFinished.Event_Raise();
+                _currentlyLoadedObjects[index] = null;
                 ReturnObjectToPool(wordObject);
+
+                WordObject newObject = LoadNewObject();
+                newObject.gameObject.transform.position = _spawnPoints[index].position;
+                newObject.GetComponent<Listener>().enabled = true;
+                newObject.gameObject.SetActive(true);
+                newObject.Target = CharacterType.Enemy;
+                _currentlyLoadedObjects[index] = newObject;
+
+                _myWordFinished.Event_Raise();
                 return;
             }
             Debug.LogError("Received value is not a string.");
@@ -113,10 +113,16 @@ public class WordsManager : MonoBehaviour
     {
         foreach (WordObject wordObject in _currentlyLoadedObjects)
         {
-            Debug.Log(wordObject.Word.Value);
+            if (wordObject == null)
+            {
+                continue;
+            }
             ReturnObjectToPool(wordObject);
         }
-        _currentlyLoadedObjects.Clear();
+        for (int i = 0; i < _maxWordsOnScreen; i++)
+        {
+            _currentlyLoadedObjects[i] = null;
+        }
         _currentWordsCount = 0;
     }
 
@@ -126,8 +132,10 @@ public class WordsManager : MonoBehaviour
         {
             WordObject newObject = LoadNewObject();
             newObject.gameObject.transform.position = _spawnPoints[i].position;
+            newObject.GetComponent<Listener>().enabled = true;
             newObject.gameObject.SetActive(true);
-            _currentlyLoadedObjects.Add(newObject);
+            newObject.Target = CharacterType.Enemy;
+            _currentlyLoadedObjects[i] = newObject;
         }
         _currentWordsCount = _maxWordsOnScreen;
     }
