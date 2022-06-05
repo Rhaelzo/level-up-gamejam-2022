@@ -3655,6 +3655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initializeSystems: {fileID: 11400000, guid: eea7dd44e7adaae44af66967fdb41011, type: 2}
   _gameEnd: {fileID: 11400000, guid: 6ef79c65d71efdc4cbfdd64c51b8fe71, type: 2}
+  _character: {fileID: 1211448041}
 --- !u!114 &1723208836
 MonoBehaviour:
   m_ObjectHideFlags: 0

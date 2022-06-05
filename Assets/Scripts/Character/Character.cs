@@ -60,6 +60,9 @@ public class Character : MonoBehaviour, IDamageable
             {
                 if (characterType == _characterType)
                 {
+                    if (characterType == CharacterType.Enemy){
+                        ScoreVariables.damageDone += value;
+                    }
                     ReduceHealth(value);
                 }
                 return;

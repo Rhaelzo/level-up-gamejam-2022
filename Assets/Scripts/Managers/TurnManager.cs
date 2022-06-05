@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -72,6 +73,9 @@ public class TurnManager : MonoBehaviour
     {
         if (_turnVariable.RuntimeValue == Turn.Enemy)
         {
+            if(_turnCountVariable.RuntimeValue == 1){
+                ScoreVariables.unixTimeStarted = DateTimeOffset.Now.ToUnixTimeSeconds();
+            }
             if (_turnCountVariable.RuntimeValue >= _numberOfTurns)
             {
                 _turnVariable.RuntimeValue = Turn.Both;

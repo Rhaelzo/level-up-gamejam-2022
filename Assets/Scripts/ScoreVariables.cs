@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ScoreVariables
 {
-    public static float timeStarted = 0f;
+    public static long unixTimeStarted = 0;
     public static int damageDone = 0;
-    public static int healthRemaining = 0;
 }

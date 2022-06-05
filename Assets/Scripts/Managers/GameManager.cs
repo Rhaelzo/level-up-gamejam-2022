@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private BoolVariableSO _gameEnd;
+
+    [SerializeField]
+    public Character _character;
 
     private void Start()
     {
@@ -38,9 +42,13 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("playerWon", 0); 
         }
 
-        PlayerPrefs.SetFloat("score", 0f);
+        PlayerPrefs.SetFloat("score", calculateScore());
 
         _gameEnd.RuntimeValue = true;
         SceneManager.LoadScene("EndScreen");
+    }
+
+    private float calculateScore(){
+        return _character.Health * ScoreVariables.damageDone / (DateTimeOffset.Now.ToUnixTimeSeconds() - ScoreVariables.unixTimeStarted);
     }
 }
