@@ -13,7 +13,7 @@ public class WordObjectsManager : MonoBehaviour
     {
         s_allWordObjects = new List<WordObject>();
         s_indexesInUse = new List<int>();
-        ReadInsultsFromFile("Assets/Words/insults_test.txt", prefab);
+        ReadInsultsFromFile("Assets/Words/insults.txt", prefab);
     }
 
     private static void ReadInsultsFromFile(string path, WordObject wordObjectPrefab)
