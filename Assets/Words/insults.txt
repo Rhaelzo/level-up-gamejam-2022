@@ -1,263 +1,247 @@
-abomination,1
 airhead,1
-animal,1
+animal,0
 anorak,1
-anus licker,1
-ape,1
-apefucker,1
-arse,1
-ass,1
-assaholic,1
-ass bag,1
-ass bitch,1
-ass clown,1
-asscunt,1
-assface,1
-assfag,1
-assfucker,1
-asshat,1
-asshole,1
-asshole licker,1
-ass-kisser,1
-ass licker,1
-assmonkey,1
-assmouth,1
-assmunch,1
-ass-nugget,1
-ass sucker,1
-asstard,1
-asswagon,1
-assweed,1
-asswipe,1
-bag whore,1
-ballkicker,1
-ball licker,1
-balloon head,1
-ballsack,1
-bandit,1
-bangsat,1
-Bangtan's Princess,1
-barbarian,1
-Barbie-fucker,1
+ape,0
+arse,0
+arsehole,0
+ass,0
+ass bitch,0
+ass clown,0
+assface,0
+asshat,0
+asshole,0
+ass-kisser,0
+baby,0
+backwoodsman,1
+ball licker,0
+bandit,0
 barnacle head,1
-bastard,1
-bawtboy,1
-bean head,1
-beast,1
-beaver,1
-bedwetter,1
+bastard,0
+bean head,0
+beaver,0
+bedwetter,0
 beetlehead,1
-beggar,1
-beginner,1
-belch,1
-beldame,1
-bell-end,1
-berk,1
-bespawler,1
-beta,1
-beta cuck,1
+beta,0
 biatch,1
-bimbo,1
-birdbrain,1
-birdfucker,1
-bitch,1
-bitch-ass,1
-bitch boy,1
-bitchcunt,1
-bogeyman,1
-bonehead,1
-boob,1
-booby,1
-bootlicker,1
-Booty,1
-boozer,1
-bot,1
-boyfucker,1
-bozo,1
-brainlet,1
-brat,1
-brickfucker,1
-brickhead,1
-brotherfucker,1
-brunette,1
+bimbo,0
+bitch,0
+bitch-ass,0
+bitch boy,0
+bitchwad,0
+bitchzilla,1
+blockhead,0
+blubber gut,1
+bogeyman,0
+bonehead,0
+bootlicker,0
+bozo,0
+brat,0
+brickhead,0
 buffoon,1
-bugfucker,1
-bugger,1
-bullfuck,1
-bully,1
-bum,1
-bumbo,1
+bully,0
+bum,0
 bum chum,1
-bum-fucker,1
-bunghole,1
-burden,1
-buttass,1
-buttbreath,1
-buttface,1
-buttfucker,1
-butthead,1
-butthole,1
-buttkisser,1
-buttknocker,1
-butt knuckler,1
-buttlicker,1
-butt lord,1
-buttmunch,1
-butt nugget,1
-butt sniffer,1
-cockboy,1
-cockburger,1
-cockfucker,1
-cockhead,1
-cockholster,1
-cockmaster,1
-cockroach,1
-cocksucker,1
-cocktease,1
-cockwaddle,1
-cockweasel,1
-cockwomble,1
-coffee slurper,1
-commie,1
-con man,1
-con merchant,1
+buttface,0
+butthead,0
+butthole,0
+butt lord,0
+caveman,0
+chauvinist,1
+cheat,1
+chicken,0
+clown,0
+cocksucker,0
+con man,0
 coochie-ass,1
-cootie face,1
-corpsefucker,1
-couch potato,1
-cougar,1
-country bumpkin,1
-cousinfucker,1
-cousin humper,1
-cow,1
-coward,1
-cowfucker,1
-crackhead,1
-crack whore,1
-crap eater,1
-craphole,1
-creep,1
-creeper,1
+cootie face,0
+coward,0
+creep,0
 cretin,1
-criminal,1
 crook,1
-cuss,1
-daddyfucker,1
+crybaby,0
+cunt,0
 dandiprat,1
-daughterfucker,1
-deadhead,1
-degenerate,1
 delinquent,1
-demon,1
-der-brain,1
-devil,1
-dick,1
-dickass,1
-dickbag,1
-dickbreath,1
-dicktits,1
-dickwad,1
-dickweasel,1
-Dickweed,1
-dildo,1
-dillhole,1
-dimmadumbass,1
+dick,0
+dickhead,0
+dickwad,0
 dimwit,1
-ding a ling,1
-ding dong,1
-ding-head,1
-dingleberry,1
-dingus,1
-dinosaur,1
-dipfuck,1
-dipshit,1
-dirtbag,1
-dirthead,1
-dirt muncher,1
-dirtwad,1
-disgrace,1
-dodo,1
-dog,1
-dogbolt,1
-dogbreath,1
-dogfucker,1
+ding dong,0
+dingleberry,0
+dingus,0
+dipshit,0
+dirtbag,0
+doodoo head,0
+dog,0
 dolt,1
-donkey,1
-donkey dick,1
-donkeyfucker,1
-doofus,1
-Dookie,1
-dope,1
-dopester,1
-dotterel,1
-douche,1
-douche bag,1
-doucheburger,1
-douche canoe,1
-douchefag,1
-douchelord,1
-douche nark,1
-douche nozzle,1
-douchewad,1
-douchewagon,1
-egghead,1
+donkey,0
+doofus,0
+douche,0
+douche bag,0
+douche nozzle,0
+drunkard,0
+dumbarse,1
+dumbass,0
+dumbo,0
+dum dum,0
+dunce,1
+dweeb,0
+egghead,0
 egotist,1
-envirotard,1
-eunuch,1
-evildoer,1
-faggot,1
-fagtits,1
-failed abortion,1
-failure,1
-fairy,1
-fartface,1
-fart hole,1
-fartknocker,1
-fartman,1
-fart smeller,1
-fart sucker,1
-fascist,1
-fatass,1
-fatfuck,1
-fat geezer,1
-fatherfucker,1
-fatso,1
-fat-tard,1
-fatty,1
-flake,1
-flat-earther,1
-fleabag,1
-flip-flopper,1
-fool,1
-foreskin ripper,1
-foul mouth,1
-four eyes,1
-fraggle,1
-frat-boy bitch,1
-freak,1
-fruitcake,1
-frump,1
-fuck,1
-fuckass,1
-fuckbait,1
-fucktoy,1
-fuckweasel,1
-fuckwhistle,1
-fuckwit,1
-fudge packer,1
-fugly,1
-funpire,1
-furry,1
-gangster,1
-gaper,1
-garbage,1
-gawk,1
-gaytard,1
-gaywad,1
-geebag,1
-geek,1
-gimp,1
-ginger,1
+failure,0
+fart,0
+fartface,0
+fatass,0
+fatso,0
+fatty,0
+fink,1
+fool,0
+four eyes,0
+fuck,0
+fucker,0
+fuckface,0
+fuckhead,0
+geek,0
+goblin,0
+gold digger,0
+goof,0
+goon,0
+goose,0
+gorilla,0
+grinch,0
+hillbilly,0
+hippie,0
+hoe,0
+hooligan,1
+hypocrite,0
+idiot,0
+idiot sandwich,1
+imbecile,1
+jabroni,0
+jackass,0
+jerk,0
+jerkwad,0
+Karen,1
+landwhale,1
+lard,0
+liar,0
+loafer,0
+loser,0
+loudmouth,0
+low-life,0
+lunatic,0
+maggot,0
+meanie,0
+megabitch,0
+mofo,0
+monkey,0
+monster,0
+moron,0
+motherfucker,0
+mule,0
+mutt,0
+naysayer,1
+neanderthal,0
+nerd,0
+nimrod,1
+nincompoop,1
+ninny,1
+nitwit,1
+nobody,0
+nonce,1
+noodle,1
+numbskull,1
+numskull,1
+nutjob,0
+oaf,0
+oddball,0
+ogre,0
+pain in the ass,0
+pansy,0
+pariah,0
+party pooper,0
+peasant,0
+penchod,0
+pervert,0
+piece of crap,0
+piece of shit,0
+pig,0
+piggy-wiggy,0
+pinhead,1
+pleb,1
+plonker,1
+poopface,0
+poopy head,0
+poopy pants,0
+potato head,0
+prick,0
+primadonna,1
+pseudo-intellectual,1
+punk,0
+punkass,0
+pussy,0
+rat,0
+redneck,0
+ruffian,1
+scaredy-cat,0
+schlub,1
+scoundrel,1
+screw up,0
+scum,0
+scumbag,0
+shitass,0
+shitbag,0
+shitface,0
+shithead,0
+shit stain,0
+shrew,1
+simpleton,1
+skank,0
+skite,1
+skunk,0
+slacker,0
+slag,0
+sleeze ball,0
+slimeface,0
+slob,0
+slut,0
+snail,0
+snake,0
+snob,0
+snotface,0
+son of a bitch,0
+son of a whore,0
+sow,1
+splenetic,1
+square,0
+stick in the mud,1
+stinker,0
+sucker,0
+swine,0
+thief,0
+toilet baby,1
+traitor,0
+trash,0
+troglodyte,1
+turd,0
+twat,0
+twerp,1
+twit,1
+vandal,0
+varmint,1
+vermin,0
+wanker,0
+waste of oxygen,0
+weakling,0
+weirdo,0
+whiner,0
+whore,0
+wimp,0
+window licker,0
+worm,0
+wretch,0
+wuss,0
+yonker,0
 hoodlum,1
 dumb,0
 ugly,0
@@ -273,6 +257,7 @@ mumpsimus,1
 milksop,1
 hobbledehoy,1
 pettifogger,1
+shyster,1
 mooncalf,1
 saltimbanco,1
 dunderheaded,1

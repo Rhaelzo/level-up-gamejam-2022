@@ -1,3 +1,0 @@
-pedro,1
-
-miguel,0
