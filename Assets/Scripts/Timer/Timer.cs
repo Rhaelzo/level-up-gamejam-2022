@@ -1,119 +1,101 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
-public class Timer : MonoBehaviour, IPausable
+/// <summary>
+/// Class responsible for handling the turn timer
+/// </summary>
+public class Timer : MonoBehaviour, IPausable, IBarUser
 {
+    [field: SerializeField, Header("Listenables")]
+    public ListenableSO UpdateBar { get; private set; }
+
     [field: SerializeField]
     public BoolVariableSO PauseVariable { get; private set; }
 
     [SerializeField]
     private BoolVariableSO _gameEndVariable;
 
+    [SerializeField]
+    private GameEvent _endTurn;
+
+    [Header("Others")]
     [SerializeField, Range(10, 20)]
     private float _startingTurnsTime = 10f;
 
-    [SerializeField]
-    private GameEvent _onTurnEnd;
-
-    [SerializeField]
-    private Image _timerBar;
-
-    [SerializeField]
-    private UnityEvent _changeToOverloadUI;
-    
-    [SerializeField]
+    [Header("Read only")]
+    [SerializeField, ReadOnly]
     private float _currentTime;
 
-    [SerializeField]
+    [SerializeField, ReadOnly]
     private bool _isCounting;
 
-    [SerializeField]
-    private bool _overLoadReached;
+    private object[] _dataArray;
 
     private void Awake()
     {
+        UpdateBar.UseLogs = false;
         _currentTime = _startingTurnsTime;
-        _isCounting = false;
+        _dataArray = new object[2];
+        _dataArray[1] = _startingTurnsTime;
     }
 
-    private void Update() 
+    private void Update()
     {
-        if (_gameEndVariable.RuntimeValue)
-        {
-            return;
-        }
-        if (PauseVariable.RuntimeValue || _overLoadReached)
+        if (_gameEndVariable.RuntimeValue || PauseVariable.RuntimeValue)
         {
             return;
         }
         if (_isCounting)
         {
-            _currentTime = Math.Max(_currentTime - Time.deltaTime, 0f);
-            _timerBar.fillAmount = _currentTime / _startingTurnsTime;
-            if (_currentTime == 0f)
-            {
-                _isCounting = false;
-                _onTurnEnd.Event_Raise();
-            }
+            Tick();
         }
     }
 
-    public void Event_ResetTime(object eventData)
+    /// <summary>
+    /// Tick the current timer based on the time passed since
+    /// last frame
+    /// </summary>
+    private void Tick()
+    {
+        _currentTime = Math.Max(_currentTime - Time.deltaTime, 0f);
+        _dataArray[0] = _currentTime;
+        UpdateBar.Event_Raise(_dataArray);
+        if (_currentTime == 0f)
+        {
+            _isCounting = false;
+            _endTurn.Event_Raise();
+        }
+    }
+
+    /// <summary>
+    /// Event to reset the timer
+    /// </summary>
+    /// <param name="eventData">
+    /// Event data containing the current turn value 
+    /// </param>
+    public void Event_ResetTimer(object eventData)
     {
         if (eventData is Turn value)
         {
             if (value == Turn.Both)
             {
+                Debug.Log("Turn is Both, skipping timer reset");
                 return;
             }
-            ResetTime();
+            ResetTimer();
+            return;
         }
+        Debug.LogError("Received value is not of type Turn");
     }
 
-    private void ResetTime()
+    /// <summary>
+    /// Resets timer
+    /// </summary>
+    private void ResetTimer()
     {
         _currentTime = _startingTurnsTime;
+        _dataArray[0] = _currentTime;
+        UpdateBar.Event_Raise(_dataArray);
         _isCounting = true;
-    }
-
-    public void Event_AddTime(object eventData)
-    {
-        if (eventData is float timeToAdd)
-        {
-            AddTime(timeToAdd);
-            return;
-        }
-        Debug.LogError("Time to add was NaN");
-    }
-
-    private void AddTime(float timeToAdd)
-    {
-        float processedTimeToAdd = Math.Abs(timeToAdd);
-        _currentTime = Math.Min(_currentTime + timeToAdd, _startingTurnsTime);
-    }
-
-    public void Event_ReduceTime(object eventData)
-    {
-        if (eventData is float timeToReduce)
-        {
-            ReduceTime(timeToReduce);
-            return;
-        }
-        Debug.LogError("Time to add was NaN");
-    }
-
-    private void ReduceTime(float timeToReduce)
-    {
-        float processedTimeToAdd = Math.Abs(timeToReduce);
-        _currentTime = Math.Max(_currentTime - timeToReduce, 0f);
-    }
-
-    public void Event_OverloadStart(object eventData)
-    {
-        _isCounting = false;
-        _overLoadReached = true;
-        _changeToOverloadUI.Invoke();
     }
 }
