@@ -333,7 +333,6 @@ RectTransform:
   m_Children:
   - {fileID: 162640287}
   - {fileID: 2048505798}
-  - {fileID: 1096944343}
   m_Father: {fileID: 1944524033}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -392,7 +391,7 @@ GameObject:
   - component: {fileID: 162640288}
   - component: {fileID: 162640289}
   m_Layer: 5
-  m_Name: TimerHandler
+  m_Name: TimerLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,29 +428,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73080bcc496dcbc45a2a545a9c3c1a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <UpdateBar>k__BackingField: {fileID: 11400000, guid: 8fd0e632d47cb9b4d858af6e59ef2b77, type: 2}
   <PauseVariable>k__BackingField: {fileID: 11400000, guid: e5262d2394073784497c29d65f06a41f, type: 2}
   _gameEndVariable: {fileID: 11400000, guid: 6ef79c65d71efdc4cbfdd64c51b8fe71, type: 2}
+  _endTurn: {fileID: 11400000, guid: d11b5a36f115b914ab9edc0aa642668c, type: 2}
   _startingTurnsTime: 10
-  _onTurnEnd: {fileID: 11400000, guid: d11b5a36f115b914ab9edc0aa642668c, type: 2}
-  _timerBar: {fileID: 861373992}
-  _changeToOverloadUI:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1096944342}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   _currentTime: 0
   _isCounting: 0
-  _overLoadReached: 0
 --- !u!114 &162640289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +454,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 162640288}
           m_TargetAssemblyTypeName: Timer, Assembly-CSharp
-          m_MethodName: Event_ResetTime
+          m_MethodName: Event_ResetTimer
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -487,10 +470,22 @@ MonoBehaviour:
     <Response>k__BackingField:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 162640289}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 162640288}
-          m_TargetAssemblyTypeName: Timer, Assembly-CSharp
-          m_MethodName: Event_OverloadStart
-          m_Mode: 0
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1855,7 +1850,7 @@ GameObject:
   - component: {fileID: 861373993}
   - component: {fileID: 861373992}
   m_Layer: 5
-  m_Name: TimerBar
+  m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2439,12 +2434,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096944342}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 97236011}
-  m_RootOrder: 2
+  m_Father: {fileID: 2048505798}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4348,8 +4343,10 @@ GameObject:
   - component: {fileID: 2048505798}
   - component: {fileID: 2048505800}
   - component: {fileID: 2048505799}
+  - component: {fileID: 2048505802}
+  - component: {fileID: 2048505801}
   m_Layer: 5
-  m_Name: Background
+  m_Name: TimerBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4367,6 +4364,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 861373991}
+  - {fileID: 1096944343}
   m_Father: {fileID: 97236011}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4413,6 +4411,92 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048505797}
   m_CullTransparentMesh: 1
+--- !u!114 &2048505801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048505797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aad0d7942f774233b8947d961c5fd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerData:
+  - <Listenable>k__BackingField: {fileID: 11400000, guid: 8fd0e632d47cb9b4d858af6e59ef2b77, type: 2}
+    <Response>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2048505802}
+          m_TargetAssemblyTypeName: BarFillerManager, Assembly-CSharp
+          m_MethodName: Event_UpdateBar
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    <CallbackData>k__BackingField:
+      <ListenerID>k__BackingField: 
+  - <Listenable>k__BackingField: {fileID: 11400000, guid: eac8672449c497f45ba4f772ee293b14, type: 2}
+    <Response>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 861373990}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1096944342}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 2048505801}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    <CallbackData>k__BackingField:
+      <ListenerID>k__BackingField: 
+--- !u!114 &2048505802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048505797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721b01759fc46624dab2c96d2db1cc6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _barImage: {fileID: 861373992}
 --- !u!1 &2140494555
 GameObject:
   m_ObjectHideFlags: 0
