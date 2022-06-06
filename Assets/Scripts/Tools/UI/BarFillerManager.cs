@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Class responsible for updating a bar fill amount
 /// </summary>
-public class BarFillerManager : MonoBehaviour 
+public class BarFillerManager : MonoBehaviour
 {
     [SerializeField]
     private Image _barImage;
@@ -20,12 +20,13 @@ public class BarFillerManager : MonoBehaviour
     {
         if (eventData is object[] dataArray)
         {
-            if (dataArray.Length == 2 && dataArray[0] is float current 
+            if (dataArray.Length == 2 && dataArray[0] is float current
                 && dataArray[1] is float total)
             {
                 UpdateBar(current, total);
                 return;
             }
+            Debug.Log("Is float? " + (dataArray[0] is float));
             Debug.LogError("Invalid object[] received");
             return;
         }
