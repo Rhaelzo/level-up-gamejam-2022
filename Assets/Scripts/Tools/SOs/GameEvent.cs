@@ -7,7 +7,10 @@ public class GameEvent : ListenableSO
     public override void Event_Raise(object eventData = null)
     {
         base.Event_Raise(eventData);
-        Debug.Log("Game event is being raised (" + name + ") with data of " 
-            + eventData?.ToString());
+        if (UseLogs)
+        {
+            Debug.Log("Game event is being raised (" + name + ") with data of " 
+                + eventData?.ToString());
+        }
     }
 }

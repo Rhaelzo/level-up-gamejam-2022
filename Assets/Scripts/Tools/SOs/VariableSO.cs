@@ -28,7 +28,10 @@ public abstract class VariableSO<T> : ListenableSO
     public override void Event_Raise(object data = null)
     {
         base.Event_Raise(data);
-        Debug.Log(nameof(VariableSO<T>) + " event is being sent by " 
-            + name + " with data of " + data?.ToString());
+        if (UseLogs)
+        {
+            Debug.Log(nameof(VariableSO<T>) + " event is being sent by " 
+                + name + " with data of " + data?.ToString());
+        }
     }
 }
