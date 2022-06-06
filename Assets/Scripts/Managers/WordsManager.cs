@@ -6,10 +6,10 @@ public class WordsManager : MonoBehaviour
     [SerializeField, Range(3, 5)]
     private int _maxWordsOnScreen = 3;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private int _currentWordsCount;
     
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private WordObject[] _currentlyLoadedObjects;
 
     [SerializeField]
@@ -21,7 +21,7 @@ public class WordsManager : MonoBehaviour
     [SerializeField]
     private GameEvent _myWordFinished;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool _isInitialized;
 
     public void Event_Initialize(object eventData)

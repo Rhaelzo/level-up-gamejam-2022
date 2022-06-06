@@ -8,7 +8,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField]
     private BoolVariableSO _gameEndVariable;
     
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool _isInitialized = false;
 
     private void Awake() 

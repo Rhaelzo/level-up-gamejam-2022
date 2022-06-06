@@ -18,7 +18,7 @@ public class WordObjectsManager : MonoBehaviour
     {
         s_allWordObjects = new List<WordObject>();
         s_indexesInUse = new List<int>();
-        ReadInsultsFromFile("Assets/Words/insults.txt", prefab, _availableFonts);
+        ReadInsultsFromFile(Application.dataPath + "/Words/insults.txt", prefab, _availableFonts);
     }
 
     private static void ReadInsultsFromFile(string path, WordObject wordObjectPrefab, TMP_FontAsset[] availableFonts)

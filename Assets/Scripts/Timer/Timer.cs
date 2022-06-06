@@ -23,13 +23,13 @@ public class Timer : MonoBehaviour, IPausable
     [SerializeField]
     private UnityEvent _changeToOverloadUI;
     
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private float _currentTime;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool _isCounting;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool _overLoadReached;
 
     private void Awake()

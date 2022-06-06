@@ -10,13 +10,13 @@ public class EnemyAI : MonoBehaviour
     [SerializeField, Range(0.10f, 0.45f)]
     private float _timeBetweenTry = 0.05f;
     
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private float _currentTimeBetweenTries;
 
     [SerializeField]
     private TurnVariableSO _turnVariable;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private WordObject _currentWordObject;
     
     [SerializeField]
@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private Transform _spawnPoint;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool _enemyTurn;
 
     private StringBuilder _stringBuilder;

@@ -1928,7 +1928,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Created with love for ISEP''s GameJam 2022 :)
 
+    
 
+    
 
     Creators:
 
@@ -1937,25 +1939,46 @@ MonoBehaviour:
 
     Francisco Leites
 
+    
 
+    
 
     Font assets:
 
-    X Typewriter by GGBotNet
+    X Typewriter
+    by GGBotNet
 
-    First
-    Time Writing! by GGBotNet
+    First Time Writing! by GGBotNet
 
     Wobbly by Rhaskia
 
-    FONT: whatvr.ttf by notsleeping
+    FONT:
+    whatvr.ttf by notsleeping
 
+    
 
+    
 
-    Image
+    Image assets:
+
+    "Crinkly paper
+    texture" by Racool_studio
+
+    "Notebook Paper Texture Lines" by tensaisaisai
+
+    
+
+    
+
+    Audio
     assets:
 
-    Crinkly paper texture by Racool_studio'
+    "A Kinda Cool Sound Effect" by Spring Spring
+
+    "Title/Menu
+    Screen BGM" by el-corleo
+
+    "Royal Strings" by jukeri12'
 --- !u!222 &1988585664
 CanvasRenderer:
   m_ObjectHideFlags: 0

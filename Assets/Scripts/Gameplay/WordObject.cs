@@ -12,10 +12,10 @@ public class WordObject : MonoBehaviour
     [SerializeField]
     private GameEvent _onWordFinished;
 
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
     public CharacterType Target { get; set; } = CharacterType.None;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool _isInitialized;
 
     public void Initialize(Word word)

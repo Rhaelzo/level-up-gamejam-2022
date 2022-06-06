@@ -32,10 +32,10 @@ public class RoundManager : MonoBehaviour, IPausable
     [SerializeField, Range(3, 5)]
     private int _numberOfTurns = 3;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private float _currentSoundTime = 0f;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool _wasPlaying = false;
     
     [field: SerializeField]

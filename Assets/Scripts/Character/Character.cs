@@ -9,7 +9,7 @@ public class Character : MonoBehaviour, IDamageable
     [field: SerializeField, Range(50, 200)]
     public int MaxHealth { get; private set; } = 100;
 
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
     public int Health { get; private set; }
 
     [SerializeField]

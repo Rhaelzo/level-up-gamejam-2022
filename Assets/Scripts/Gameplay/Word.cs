@@ -5,16 +5,16 @@ using UnityEngine;
 [Serializable]
 public class Word
 {
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
     public string Value { get; private set; }
 
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
     public TMP_FontAsset Font { get; private set; }
 
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
     public int Points { get; private set; }
 
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
     public float Multiplier { get; private set; }
 
     public Word(string value, float multiplier, TMP_FontAsset font)

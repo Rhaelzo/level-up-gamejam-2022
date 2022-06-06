@@ -11,7 +11,7 @@ public class MusicManager : MonoBehaviour, IPausable
     [SerializeField]
     private AudioClip[] _audioClips;
 
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private float _currentSoundTime;
 
     private void Start() 

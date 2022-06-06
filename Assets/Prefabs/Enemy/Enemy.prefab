@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6b10207efd2d4499482598f793d067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPercentage: 0.537
+  _hitPercentage: 0.6
   _timeBetweenTry: 0.26
   _currentTimeBetweenTries: 0
   _turnVariable: {fileID: 11400000, guid: b8ecbb859e3ea684393173935e758002, type: 2}
