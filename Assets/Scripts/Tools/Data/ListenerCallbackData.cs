@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class ListenerCallbackData
 {
-    [field: SerializeField]
+    [field: SerializeField, ReadOnly]
     public string ListenerID { get; private set; }
 
     public Action<object> Callback { get; private set; }
