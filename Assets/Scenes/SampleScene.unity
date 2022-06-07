@@ -1642,7 +1642,12 @@ MonoBehaviour:
   _audioSource: {fileID: 663198133}
   _audioClips:
   - {fileID: 8300000, guid: 76b3881de0b9eaa44b5d51b91cba4483, type: 3}
-  _currentSoundTime: 0
+  _timeAdditionBetweenSongs: 3
+  _currentSongLength: 0
+  _timeToNextSong: 0
+  _currentSongTime: 0
+  _isInitialized: 0
+  _waitForTimeBetweenSongs: 0
 --- !u!114 &663198135
 MonoBehaviour:
   m_ObjectHideFlags: 0
