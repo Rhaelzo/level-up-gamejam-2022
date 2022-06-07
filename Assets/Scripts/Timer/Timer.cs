@@ -58,8 +58,7 @@ public class Timer : MonoBehaviour, IPausable, IBarUser
     private void Tick()
     {
         _currentTime = Math.Max(_currentTime - Time.deltaTime, 0f);
-        _dataArray[0] = _currentTime;
-        UpdateBar.Event_Raise(_dataArray);
+        SendEvent();
         if (_currentTime == 0f)
         {
             _isCounting = false;
@@ -94,8 +93,16 @@ public class Timer : MonoBehaviour, IPausable, IBarUser
     private void ResetTimer()
     {
         _currentTime = _startingTurnsTime;
+        SendEvent();
+        _isCounting = true;
+    }
+
+    /// <summary>
+    /// Sends event with required data
+    /// </summary>
+    private void SendEvent()
+    {
         _dataArray[0] = _currentTime;
         UpdateBar.Event_Raise(_dataArray);
-        _isCounting = true;
     }
 }
