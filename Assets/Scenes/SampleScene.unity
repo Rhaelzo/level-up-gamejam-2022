@@ -3466,7 +3466,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1467727469}
           m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
-          m_MethodName: Event_InitializeManager
+          m_MethodName: Event_Initialize
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
