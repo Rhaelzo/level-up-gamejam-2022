@@ -33,15 +33,33 @@ public class MusicManager : MonoBehaviour, IPausable
     [SerializeField, ReadOnly]
     private bool _isInitialized;
 
+    [SerializeField, ReadOnly]
+    private bool _waitForTimeBetweenSongs;
+
+    private void Awake() 
+    {
+        Initialize();
+    }
+
     private void Update()
     {
         if (!_isInitialized || PauseVariable.RuntimeValue)
         {
             return;
         }
-        if (_timeToNextSong <= _audioSource.time)
+        if (_waitForTimeBetweenSongs)
         {
-            LoadRandomTrack();
+            _currentSongTime += Time.deltaTime;
+            if (_currentSongTime >= _timeToNextSong)
+            {
+                LoadRandomTrack();
+                _waitForTimeBetweenSongs = false;
+            }
+            return;
+        }
+        if (_audioSource.time >=_audioSource.clip.length)
+        {
+            _waitForTimeBetweenSongs = true;
             return;
         }
         _currentSongTime = _audioSource.time;
