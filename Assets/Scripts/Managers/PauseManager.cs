@@ -7,12 +7,14 @@ using UnityEngine;
 /// </summary>
 public class PauseManager : MonoBehaviour
 {
+    [Header("Listenables")]
     [SerializeField]
     private BoolVariableSO _pauseVariable;
 
     [SerializeField]
     private BoolVariableSO _gameEndVariable;
     
+    [Header("Read only")]
     [SerializeField, ReadOnly]
     private bool _isInitialized;
 
