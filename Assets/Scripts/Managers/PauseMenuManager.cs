@@ -1,47 +1,54 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class PauseMenuManager : MonoBehaviour, IPausable
+/// <summary>
+/// Class that handles the pause menu UI interactions
+/// </summary>
+public class PauseMenuManager : MonoBehaviour
 {
-    [field: SerializeField]
-    public BoolVariableSO PauseVariable { get; private set; }
+    [Header("Listenables")]
+    [SerializeField]
+    public BoolVariableSO _pauseVariable;
 
     [SerializeField]
     private BoolVariableSO _gameEnd;
 
+    [Header("UI callbacks")]
     [SerializeField]
-    private GameObject _pauseMenu;
+    private UnityEvent<bool> _onPaused;
 
-    [SerializeField]
-    private Button _continueButton;
-
+    /// <summary>
+    /// Event callback when pressing the continue button.
+    /// Continues the game
+    /// </summary>
     public void Event_Continue()
     {
-        PauseVariable.RuntimeValue = false;
-        _pauseMenu.SetActive(false);
+        _pauseVariable.RuntimeValue = false;
     }
 
+    /// <summary>
+    /// Event callback when pressing the exit button.
+    /// Send the player to the main menu
+    /// </summary>
     public void Event_Exit()
     {
-        _continueButton.interactable = false;
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void Event_OnPausePressed(object eventData)
+    /// <summary>
+    /// Event callback to trigger pause logic, invoking the
+    /// callback that sets the pause menu either active or not
+    /// </summary>
+    /// <param name="eventData">
+    /// Event data with no relevant payload data
+    /// </param>
+    public void Event_OnPause(object eventData)
     {
         if (_gameEnd.RuntimeValue)
         {
             return;
         }
-        
-        if (PauseVariable.RuntimeValue)
-        {
-            _pauseMenu.SetActive(true);
-        } 
-        else
-        {
-            _pauseMenu.SetActive(false);
-        }
+        _onPaused.Invoke(_pauseVariable.RuntimeValue);
     }
 }
