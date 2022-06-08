@@ -36,11 +36,6 @@ public class MusicManager : MonoBehaviour, IPausable
     [SerializeField, ReadOnly]
     private bool _waitForTimeBetweenSongs;
 
-    private void Awake() 
-    {
-        Initialize();
-    }
-
     private void Update()
     {
         if (!_isInitialized || PauseVariable.RuntimeValue)
