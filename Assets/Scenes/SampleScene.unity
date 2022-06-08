@@ -749,15 +749,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fd8451da953a64fb5cd2006cb12225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turnVariable: {fileID: 11400000, guid: b8ecbb859e3ea684393173935e758002, type: 2}
+  _wordFinished: {fileID: 11400000, guid: 2268ff402d16dc74ca0936fd0b97bb43, type: 2}
   _maxWordsOnScreen: 3
-  _currentWordsCount: 0
-  _currentlyLoadedObjects: []
   _spawnPoints:
   - {fileID: 1054939653}
   - {fileID: 1016634472}
   - {fileID: 265880572}
-  _turnVariable: {fileID: 11400000, guid: b8ecbb859e3ea684393173935e758002, type: 2}
-  _myWordFinished: {fileID: 11400000, guid: 2268ff402d16dc74ca0936fd0b97bb43, type: 2}
+  _currentlyLoadedObjects: []
   _isInitialized: 0
 --- !u!114 &335998799
 MonoBehaviour:
