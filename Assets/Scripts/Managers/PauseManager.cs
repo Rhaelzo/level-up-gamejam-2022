@@ -20,7 +20,7 @@ public class PauseManager : MonoBehaviour
 
     private void Update() 
     {
-        if (!_isInitialized && _gameEndVariable.RuntimeValue)
+        if (!_isInitialized || _gameEndVariable.RuntimeValue)
         {
             return;
         }
