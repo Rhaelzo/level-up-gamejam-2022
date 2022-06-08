@@ -15,8 +15,16 @@ public class WordObject : MonoBehaviour
     [field: SerializeField]
     public CharacterType Target { get; set; } = CharacterType.None;
 
-    [SerializeField]
+    [field: SerializeField, ReadOnly]
+    public Transform WordObjectTransform { get; private set; }
+
+    [SerializeField, ReadOnly]
     private bool _isInitialized;
+
+    private void Awake() 
+    {
+        WordObjectTransform = GetComponent<Transform>();    
+    }
 
     public void Initialize(Word word)
     {
