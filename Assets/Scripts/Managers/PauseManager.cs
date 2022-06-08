@@ -46,6 +46,11 @@ public class PauseManager : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
+        if (_isInitialized)
+        {
+            Debug.LogError("Pause manager is already initialized");
+            return;
+        }
         _isInitialized = true;
     }   
 }
