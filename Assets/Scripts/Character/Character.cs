@@ -1,118 +1,82 @@
 using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-public class Character : MonoBehaviour, IDamageable
+public class Character : MonoBehaviour, IDamageable, TControllable, IMessenger<CharacterEvent>, IMessageable<CharacterEvent>
 {
     [field: SerializeField, Range(50, 200)]
     public int MaxHealth { get; private set; } = 100;
 
-    [field: SerializeField]
+    [field: SerializeField, ReadOnly]
     public int Health { get; private set; }
 
     [SerializeField]
     private CharacterType _characterType;
 
     [SerializeField]
-    private Image _healthBar;
-
-    [SerializeField]
     private GameEvent _onCharacterDeath;
 
-    [SerializeField, Range(1.5f, 1.7f)]
-    private float _maxSpawnRadius = 1.5f;
+    [field: SerializeField]
+    public MessageCallbackData<CharacterEvent>[] CallbackDatas { get; private set; }
 
-    [SerializeField, Range(0.5f, 1f)]
-    private float _minSpawnRadius = 0.5f;
+    public Action<CharacterEvent, MessageContentPayload> SendCustomMessage { get; set; }
+    public Action<IConnectable> Connect { get; set; }
+    public Action<IConnectable> Disconnect { get; set; }
 
-    [SerializeField, Range(10, 13)]
-    private int _maxFontSize = 10;
-
-    [SerializeField, Range(5, 8)]
-    private int _minFontSize = 5;
-
-    [SerializeField]
-    private TextMeshPro _damagePrefab;
-
-    [SerializeField]
-    private Transform _damageSpawnCenter;
-
-    [SerializeField]
-    private TMP_FontAsset[] _damageFonts;
-
-    private void Awake() 
+    private void Awake()
     {
-        Health = MaxHealth;    
+        Health = MaxHealth;
     }
 
-    public void Event_OnWordFinished(object eventData)
+    private void OnEnable()
     {
-        if (eventData is object[] dataArray)
-        {
-            if (dataArray.Length != 3)
-            {
-                Debug.LogError("Wrong amount of data received.");
-                return;
-            }
-            if (dataArray[1] is int value && dataArray[2] is CharacterType characterType)
-            {
-                if (characterType == _characterType)
-                {
-                    if (characterType == CharacterType.Enemy){
-                        ScoreVariables.damageDone += value;
-                    }
-                    ReduceHealth(value);
-                }
-                return;
-            }
-            Debug.LogError("Received value is not a string.");
-        }
-        Debug.LogError("Received value is not an array.");
+        Connect?.Invoke(this);
+    }
+
+    private void OnDisable()
+    {
+        Disconnect?.Invoke(this);
     }
 
     public void IncreaseHealth(int amount)
     {
-        int processedAmount = Math.Abs(amount);
-        Health = Math.Min(Health + processedAmount, MaxHealth);
-        ShowHealthPopup(+processedAmount);
-        UpdateUI();
+        Health = Math.Min(Health + amount, MaxHealth);
+        SendCustomMessage?.Invoke(CharacterEvent.UpdateHealthUI, new UpdateHealthUIPayload(Health, MaxHealth, amount));
     }
 
     public void ReduceHealth(int amount)
     {
-        int processedAmount = Math.Abs(amount);
-        Health = Math.Max(Health - processedAmount, 0);
-        ShowHealthPopup(-processedAmount);
-        UpdateUI();
+        Health = Math.Max(Health + amount, 0);
+        SendCustomMessage?.Invoke(CharacterEvent.UpdateHealthUI, new UpdateHealthUIPayload(Health, MaxHealth, amount));
         if (Health == 0)
         {
-            _onCharacterDeath.Event_Raise(new object[]{ (CharacterType)_characterType });
+            _onCharacterDeath?.Event_Raise(new object[] { _characterType });
         }
     }
 
-    private void ShowHealthPopup(int damage)
+    private void UpdateHealth(int value)
     {
-        float distance = 0f;
-        Vector2 randomPosition = (Vector2)_damageSpawnCenter.position + (Random.insideUnitCircle * _maxSpawnRadius);
-        distance = Vector2.Distance(_damageSpawnCenter.position, randomPosition);
-        while (!(distance > _minSpawnRadius && distance < _maxSpawnRadius))
+        if (value < 0)
         {
-            randomPosition = (Vector2)_damageSpawnCenter.position + (Random.insideUnitCircle * _maxSpawnRadius);
-            distance = Vector2.Distance(_damageSpawnCenter.position, randomPosition);
+            ReduceHealth(value);
         }
-        TextMeshPro instancedDamage = Instantiate(_damagePrefab, randomPosition, Quaternion.identity);
-        instancedDamage.text = damage.ToString();
-        if (_damageFonts.Length != 0)
+        else if (value > 0)
         {
-            instancedDamage.font = _damageFonts[Random.Range(0, _damageFonts.Length)];
+            IncreaseHealth(value);
         }
-        instancedDamage.fontSize = Random.Range(_minFontSize, _maxFontSize);
     }
 
-    private void UpdateUI()
+    public void Message_UpdateHealth(MessageContentPayload contentPayload)
     {
-        _healthBar.fillAmount = Health / (float)MaxHealth;
+        if (contentPayload is UpdateHealthPayload updateHealthPayload)
+        {
+            if (updateHealthPayload.TargetType.Equals(_characterType))
+            {
+                // This will be reviewed once gameplay is updated.
+                // For now, only reduce health by given value.
+                UpdateHealth(-1 * updateHealthPayload.Value);
+                return;
+            }
+            return;
+        }
     }
 }
