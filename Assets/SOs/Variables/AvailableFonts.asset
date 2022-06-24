@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46278b89e8c3e35b284c4c40f062f622, type: 3}
+  m_Name: AvailableFonts
+  m_EditorClassIdentifier: 
+  defaultValue:
+  - {fileID: 11400000, guid: 050b1331f30c8e7499ee733e5b281cfe, type: 2}
+  - {fileID: 11400000, guid: 7ccae7616a6cab5429811b94baad6836, type: 2}
+  - {fileID: 11400000, guid: 82c0f520b5abd1b49acc518a0a660221, type: 2}
+  - {fileID: 11400000, guid: 142cdd4833c821742858cf815530f0fa, type: 2}
