@@ -4,23 +4,17 @@ using UnityEngine;
 /// <summary>
 /// Class responsible for handling the turn timer
 /// </summary>
-public class Timer : MonoBehaviour, IPausable, IBarUser
+public class Timer : MonoBehaviour, TControllable, IMessenger<TimerEvent>, IMessageable<TimerEvent>, IUpdateable
 {
-    [field: SerializeField, Header("Listenables")]
-    public ListenableSO UpdateBar { get; private set; }
-
-    [field: SerializeField]
-    public BoolVariableSO PauseVariable { get; private set; }
-
-    [SerializeField]
-    private BoolVariableSO _gameEndVariable;
-
     [SerializeField]
     private GameEvent _endTurn;
 
     [Header("Others")]
     [SerializeField, Range(10, 20)]
     private float _startingTurnsTime = 10f;
+
+    [field: SerializeField]
+    public MessageCallbackData<TimerEvent>[] CallbackDatas { get; private set; }
 
     [Header("Read only")]
     [SerializeField, ReadOnly]
@@ -29,22 +23,27 @@ public class Timer : MonoBehaviour, IPausable, IBarUser
     [SerializeField, ReadOnly]
     private bool _isCounting;
 
-    private object[] _dataArray;
+    public Action<IConnectable> Connect { get; set; }
+    public Action<IConnectable> Disconnect { get; set; }
+    public Action<TimerEvent, MessageContentPayload> SendCustomMessage { get; set; }
 
     private void Awake()
     {
-        UpdateBar.UseLogs = false;
         _currentTime = _startingTurnsTime;
-        _dataArray = new object[2];
-        _dataArray[1] = _startingTurnsTime;
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (_gameEndVariable.RuntimeValue || PauseVariable.RuntimeValue)
-        {
-            return;
-        }
+        Connect?.Invoke(this);
+    }
+
+    private void OnDisable()
+    {
+        Disconnect?.Invoke(this);
+    }
+
+    public void CustomUpdate()
+    {
         if (_isCounting)
         {
             Tick();
@@ -58,7 +57,7 @@ public class Timer : MonoBehaviour, IPausable, IBarUser
     private void Tick()
     {
         _currentTime = Math.Max(_currentTime - Time.deltaTime, 0f);
-        SendEvent();
+        SendCustomMessage.Invoke(TimerEvent.UpdateTimerUI, new UpdateTimerUIPayload(_currentTime, _startingTurnsTime));
         if (_currentTime == 0f)
         {
             _isCounting = false;
@@ -67,42 +66,12 @@ public class Timer : MonoBehaviour, IPausable, IBarUser
     }
 
     /// <summary>
-    /// Event to reset the timer
-    /// </summary>
-    /// <param name="eventData">
-    /// Event data containing the current turn value 
-    /// </param>
-    public void Event_ResetTimer(object eventData)
-    {
-        if (eventData is Turn value)
-        {
-            if (value == Turn.Both)
-            {
-                Debug.Log("Turn is Both, skipping timer reset");
-                return;
-            }
-            ResetTimer();
-            return;
-        }
-        Debug.LogError("Received value is not of type Turn");
-    }
-
-    /// <summary>
     /// Resets timer
     /// </summary>
-    private void ResetTimer()
+    public void Message_ResetTimer(MessageContentPayload contentPayload)
     {
         _currentTime = _startingTurnsTime;
-        SendEvent();
+        SendCustomMessage?.Invoke(TimerEvent.UpdateTimerUI, new UpdateTimerUIPayload(_currentTime, _startingTurnsTime));
         _isCounting = true;
-    }
-
-    /// <summary>
-    /// Sends event with required data
-    /// </summary>
-    private void SendEvent()
-    {
-        _dataArray[0] = _currentTime;
-        UpdateBar.Event_Raise(_dataArray);
     }
 }
