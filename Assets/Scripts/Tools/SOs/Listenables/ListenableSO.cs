@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class ListenableSO : ScriptableObject, IListenable
 {
+    public bool UseLogs { get; set; }
+
     protected readonly List<ListenerCallbackData> callbacks =
         new List<ListenerCallbackData>();
-    
-    public bool UseLogs { get; set; } = true;
 
     public virtual void Event_Raise(object eventData = null)
     {
