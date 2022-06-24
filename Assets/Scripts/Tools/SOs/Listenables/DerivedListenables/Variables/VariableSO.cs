@@ -23,14 +23,14 @@ public abstract class VariableSO<T> : ListenableSO
         _runtimeValue = defaultValue;
     }
 
-    public virtual void OnBeforeSerialize() {}
+    public virtual void OnBeforeSerialize() { }
 
     public override void Event_Raise(object data = null)
     {
         base.Event_Raise(data);
         if (UseLogs)
         {
-            Debug.Log(nameof(VariableSO<T>) + " event is being sent by " 
+            Debug.Log(nameof(VariableSO<T>) + " event is being sent by "
                 + name + " with data of " + data?.ToString());
         }
     }
