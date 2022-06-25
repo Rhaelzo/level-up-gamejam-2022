@@ -1,7 +1,15 @@
 using System;
 using UnityEngine;
 
-public class CharacterUIController : GenericController<TUIControllable, CharacterEvent>, IMessageable<CharacterEvent>, TControllable
+/// <summary>
+/// Controller class (<see cref="GenericController{T,V}"/>) responsible for controlling the 
+/// characters UI related controllables <see cref="TUIControllable"/>
+/// <para/>
+/// Communicates with the <see cref="GameCharacterController"/> to receive updates from
+/// the <see cref="Character"/>, making the bridge between view and model
+/// </summary>
+public class CharacterUIController : GenericController<TUIControllable, CharacterEvent>
+    , IMessageable<CharacterEvent>, TControllable
 {
     [field: SerializeField]
     public MessageCallbackData<CharacterEvent>[] CallbackDatas { get; private set; }
@@ -21,6 +29,14 @@ public class CharacterUIController : GenericController<TUIControllable, Characte
         Disconnect?.Invoke(this);
     }
 
+    /// <summary>
+    /// Message that receives the payload related to updating
+    /// the character's health bar
+    /// </summary>
+    /// <param name="contentPayload">
+    /// Content payload being sent to the UI Controllables
+    /// (does not need filtering)
+    /// </param>
     public void Message_UpdateHealthUI(MessageContentPayload contentPayload)
     {
         SendCustomMessage(CharacterEvent.UpdateHealthUI, contentPayload);
