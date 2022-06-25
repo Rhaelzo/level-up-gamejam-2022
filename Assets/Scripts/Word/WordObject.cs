@@ -37,8 +37,6 @@ public class WordObject : MonoBehaviour
     [SerializeField, ReadOnly]
     private bool _isInitialized;
 
-    private object[] _dataArray;
-
     /// <summary>
     /// Event callback for when the input value from the
     /// input field changed 
@@ -97,8 +95,6 @@ public class WordObject : MonoBehaviour
             _updateFontWeight.Invoke(FontWeight.Bold);
         }
         WordObjectTransform = GetComponent<Transform>();
-        _dataArray = new object[3];
-        _dataArray[0] = Word.Value;
     }
 
     /// <summary>
@@ -108,9 +104,7 @@ public class WordObject : MonoBehaviour
     private void FinishWord()
     {
         int result = (int)(Word.Points * Word.Multiplier);
-        _dataArray[1] = result;
-        _dataArray[2] = Target;
-        _onWordFinished.Event_Raise(_dataArray);
+        _onWordFinished.Event_Raise(new object[] { Word.Value, result, Target });
         // TODO wait a few seconds, blow up
     }
 
@@ -144,7 +138,5 @@ public class WordObject : MonoBehaviour
     public void ResetObject()
     {
         ResetVisuals();
-        _dataArray[1] = null;
-        _dataArray[2] = null;
     }
 }

@@ -30,11 +30,6 @@ public class Word
         return Value.StartsWith(otherValue);
     }
 
-    public override string ToString()
-    {
-        return "Value: " + Value + " Font: " + Font.ToString() + " Points: " + Points + " Multiplier: " + Multiplier;
-    }
-
     public bool IsMatch(string otherValue)
     {
         return Value.ToLower() == otherValue.ToLower();
