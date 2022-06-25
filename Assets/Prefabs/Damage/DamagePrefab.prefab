@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3854704980973532897}
   - component: {fileID: 3854704980973532903}
   - component: {fileID: 3854704980973532896}
-  - component: {fileID: 5727062443603884964}
   - component: {fileID: 3854704980973532899}
   m_Layer: 0
   m_Name: DamagePrefab
@@ -172,18 +171,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!114 &5727062443603884964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3854704980973532898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63c91ddbbd9044d4882f80a5097a9393, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &3854704980973532899
 Animator:
   serializedVersion: 3
