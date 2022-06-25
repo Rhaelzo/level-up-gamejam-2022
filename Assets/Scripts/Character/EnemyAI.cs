@@ -3,6 +3,9 @@ using System.Text;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Controllable class (<see cref="TControllable"/>) responsible for the enemy's AI
+/// </summary>
 public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent>, IUpdateable, IPoolUser<WordObject>
 {
     [field: SerializeField]
@@ -59,6 +62,13 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         Disconnect?.Invoke(this);    
     }
 
+    /// <summary>
+    /// Message that receives the payload related to starting the
+    /// enemy's turn by checking whose current turn it is
+    /// </summary>
+    /// <param name="contentPayload">
+    /// Content payload of type <see cref="CurrentTurnPayload"/>
+    /// </param>
     public void Message_StartTurn(MessageContentPayload contentPayload)
     {
         if (contentPayload is CurrentTurnPayload currentTurnPayload)
@@ -70,6 +80,15 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         }
     }
 
+
+    /// <summary>
+    /// Message related to when a word is finished, using the turn type
+    /// to decide whether it should return the object to the pool and get
+    /// a new one or not.
+    /// </summary>
+    /// <param name="contentPayload">
+    /// Content payload of type <see cref="CurrentTurnPayload"/>
+    /// </param>
     public void Message_OnWordFinished(MessageContentPayload contentPayload)
     {
         if (contentPayload is CurrentTurnPayload currentTurnPayload)
@@ -85,17 +104,31 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         }
     }
 
+    /// <summary>
+    /// Message related to when the enemy turn ends (when the timer
+    /// goes to 0 (<see cref="Timer"/>))
+    /// </summary>
+    /// <param name="contentPayload">
+    /// Content payload is unnecessary
+    /// </param>
     public void Message_EndTurn(MessageContentPayload contentPayload)
     {
         EndTurn();
     }
 
+    /// <summary>
+    /// Starts the turn by setting up the word for the enemy to start typing
+    /// </summary>
     private void StartTurn()
     {
         _enemyTurn = true;
         StartUpNewRound();
     }
 
+    /// <summary>
+    /// Ends the enemy's current turn, resetting all of its internal
+    /// variables and returning the word back to the pool
+    /// </summary>
     private void EndTurn()
     {
         _enemyTurn = false;
@@ -110,6 +143,10 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         _currentWordObject = null;
     }
 
+    /// <summary>
+    /// Ends the enemy's current turn, resetting all of its internal
+    /// variables and returning the word back to the pool
+    /// </summary>
     private void StartUpNewRound()
     {
         _currentWordObject = LoadNewObjectFromPool();
@@ -118,6 +155,9 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         SetupWordObject();
     }
 
+    /// <summary>
+    /// Sets up a word object to be used by the AI
+    /// </summary>
     private void SetupWordObject()
     {
         _currentWordObject.transform.position = _spawnPoint.position;
@@ -126,6 +166,12 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         _currentWordObject.Target = CharacterType.Player;
     }
 
+    /// <summary>
+    /// Executes a 'try', by using its hit percentage (<see cref="_hitPercentage"/>) 
+    /// to get the correct letter or just guess out of the available characters to it.
+    /// <para/>
+    /// This happens every complete cycle of the given time in <see cref="_currentTimeBetweenTries"/>
+    /// </summary>
     private void ExecuteTry()
     {
         string currentString = _stringBuilder.ToString();
@@ -142,6 +188,16 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         _currentTimeBetweenTries = 0f;
     }
 
+    /// <summary>
+    /// Gets the correct next character/letter based on the <see cref="_hitPercentage"/>
+    /// or gets the a random value from the available characters
+    /// </summary>
+    /// <param name="currentIndex">
+    /// Current character index of the word in use
+    /// </param>
+    /// <param name="value">
+    /// Word value currently in use
+    /// </param>
     private char GetLetter(int currentIndex, string value)
     {
         float randomValue = Random.Range(0f, 1f);
