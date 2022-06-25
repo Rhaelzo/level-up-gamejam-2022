@@ -1,7 +1,13 @@
 using System;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IDamageable, TControllable, IMessenger<CharacterEvent>, IMessageable<CharacterEvent>
+/// <summary>
+/// Controllable class (<see cref="TControllable"/>) responsible for the character's state 
+/// (updating the health) and perform actions based on the current state (such as raising
+/// the <see cref="_onCharacterDeath"/> game event)
+/// </summary>
+public class Character : MonoBehaviour, IDamageable, TControllable
+    , IMessenger<CharacterEvent>, IMessageable<CharacterEvent>
 {
     [field: SerializeField, Range(50, 200)]
     public int MaxHealth { get; private set; } = 100;
@@ -53,6 +59,13 @@ public class Character : MonoBehaviour, IDamageable, TControllable, IMessenger<C
         }
     }
 
+    /// <summary>
+    /// Calls the correct method (to increase or decrease health)
+    /// based on the given value
+    /// </summary>
+    /// <param name="value">
+    /// Received value to update health
+    /// </param>
     private void UpdateHealth(int value)
     {
         if (value < 0)
@@ -65,6 +78,13 @@ public class Character : MonoBehaviour, IDamageable, TControllable, IMessenger<C
         }
     }
 
+    /// <summary>
+    /// Message that receives the payload related to updating
+    /// the character's health value
+    /// </summary>
+    /// <param name="contentPayload">
+    /// Content payload of type <see cref="UpdateHealthPayload"/>
+    /// </param>
     public void Message_UpdateHealth(MessageContentPayload contentPayload)
     {
         if (contentPayload is UpdateHealthPayload updateHealthPayload)
