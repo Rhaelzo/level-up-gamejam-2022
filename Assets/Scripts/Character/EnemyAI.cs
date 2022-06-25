@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
     public Action<IConnectable> Disconnect { get; set; }
 
     private StringBuilder _stringBuilder;
-    private const string _alphabet = "abcdefghijklmnopqrstuvwxyz- ";
+    private const string _allowedCharacters = "abcdefghijklmnopqrstuvwxyz- ";
 
     private void Awake()
     {
@@ -204,7 +204,7 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
         float randomValue = Random.Range(0f, 1f);
         if (randomValue > _hitPercentage)
         {
-            return _alphabet[Random.Range(0, _alphabet.Length)];
+            return _allowedCharacters[Random.Range(0, _allowedCharacters.Length)];
         }
         return value[currentIndex];
     }
