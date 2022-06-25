@@ -7,8 +7,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private Transform _enemySpawnPoint;
-    
-    private void Awake() 
+
+    private void Awake()
     {
         Instantiate(_enemyToSpawn, _enemySpawnPoint);
     }

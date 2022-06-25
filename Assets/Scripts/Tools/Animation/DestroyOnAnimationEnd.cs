@@ -42,5 +42,4 @@ public class DestroyOnAnimationEnd : StateMachineBehaviour
         _animationLength = animationLength;
         _currentTime = 0f;
     }
-
 }

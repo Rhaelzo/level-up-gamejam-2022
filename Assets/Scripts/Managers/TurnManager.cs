@@ -10,14 +10,12 @@ public class TurnManager : MonoBehaviour
     [SerializeField, Range(3, 5)]
     private int _numberOfTurns = 3;
 
-    [SerializeField, Range(1f, 1.5f)]
-    private float _pauseTime = 1f;
-    
     [SerializeField]
     private Turn _levelDefault = Turn.Player;
 
     [SerializeField]
     private GameEvent _onOverloadTurnsReached;
+
     [SerializeField]
     private GameEvent _stopEnemyAI;
 
@@ -27,19 +25,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField]
     private IntVariableSO _turnCountVariable;
 
-    private int _currentTurnCount;
-
-    private void Awake() 
-    {
-        _currentTurnCount = 0;
-    }
-
     public void Event_InitializeTurns(object eventData)
-    {
-        LoadDefaultTurn();
-    }
-
-    private void LoadDefaultTurn()
     {
         ChangeTurn();
     }
@@ -73,7 +59,8 @@ public class TurnManager : MonoBehaviour
     {
         if (_turnVariable.RuntimeValue == Turn.Enemy)
         {
-            if(_turnCountVariable.RuntimeValue == 1){
+            if (_turnCountVariable.RuntimeValue == 1)
+            {
                 ScoreVariables.unixTimeStarted = DateTimeOffset.Now.ToUnixTimeSeconds();
             }
             if (_turnCountVariable.RuntimeValue >= _numberOfTurns)

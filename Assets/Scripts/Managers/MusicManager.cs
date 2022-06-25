@@ -16,7 +16,7 @@ public class MusicManager : MonoBehaviour, IPausable
 
     [SerializeField]
     private AudioClip[] _audioClips;
-    
+
     [SerializeField, Range(0f, 3f)]
     private float _timeAdditionBetweenSongs = 0f;
 
@@ -52,7 +52,7 @@ public class MusicManager : MonoBehaviour, IPausable
             }
             return;
         }
-        if (_audioSource.time >=_audioSource.clip.length)
+        if (_audioSource.time >= _audioSource.clip.length)
         {
             _waitForTimeBetweenSongs = true;
             return;

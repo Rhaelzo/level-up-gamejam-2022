@@ -35,20 +35,23 @@ public class GameManager : MonoBehaviour
     {
         bool gameWon = characterType == CharacterType.Enemy;
 
-        if(gameWon){
+        if (gameWon)
+        {
             PlayerPrefs.SetInt("playerWon", 1);
         }
-        else {
-            PlayerPrefs.SetInt("playerWon", 0); 
+        else
+        {
+            PlayerPrefs.SetInt("playerWon", 0);
         }
 
-        PlayerPrefs.SetFloat("score", calculateScore());
+        PlayerPrefs.SetFloat("score", CalculateScore());
 
         _gameEnd.RuntimeValue = true;
         SceneManager.LoadScene("EndScreen");
     }
 
-    private float calculateScore(){
+    private float CalculateScore()
+    {
         return _character.Health * ScoreVariables.damageDone / (DateTimeOffset.Now.ToUnixTimeSeconds() - ScoreVariables.unixTimeStarted);
     }
 }

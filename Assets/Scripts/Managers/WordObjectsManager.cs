@@ -3,12 +3,12 @@ using System.IO;
 using System.Collections.Generic;
 using TMPro;
 
-public class WordObjectsManager : MonoBehaviour 
+public class WordObjectsManager : MonoBehaviour
 {
     private static List<WordObject> s_allWordObjects;
     private static List<int> s_indexesInUse;
 
-    [SerializeField] 
+    [SerializeField]
     private WordObject prefab;
 
     [SerializeField]
@@ -42,7 +42,8 @@ public class WordObjectsManager : MonoBehaviour
         }
     }
 
-    public static List<WordObject> GetRandom(int numberOfObjects){
+    public static List<WordObject> GetRandom(int numberOfObjects)
+    {
         List<WordObject> result = new List<WordObject>();
         for (int i = 0; i < numberOfObjects; i++)
         {

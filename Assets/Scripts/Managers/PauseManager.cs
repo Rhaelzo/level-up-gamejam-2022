@@ -13,12 +13,12 @@ public class PauseManager : MonoBehaviour
 
     [SerializeField]
     private BoolVariableSO _gameEndVariable;
-    
+
     [Header("Read only")]
     [SerializeField, ReadOnly]
     private bool _isInitialized;
 
-    private void Update() 
+    private void Update()
     {
         if (!_isInitialized || _gameEndVariable.RuntimeValue)
         {
@@ -52,5 +52,5 @@ public class PauseManager : MonoBehaviour
             return;
         }
         _isInitialized = true;
-    }   
+    }
 }

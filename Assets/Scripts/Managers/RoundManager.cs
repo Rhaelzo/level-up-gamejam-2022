@@ -37,7 +37,7 @@ public class RoundManager : MonoBehaviour, IPausable
 
     [SerializeField]
     private bool _wasPlaying = false;
-    
+
     [field: SerializeField]
     public BoolVariableSO PauseVariable { get; private set; }
 
