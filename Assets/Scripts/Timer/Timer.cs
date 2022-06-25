@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// Class responsible for handling the turn timer
+/// Controllable class (<see cref="TControllable"/>) responsible for handling 
+/// the turn timer
 /// </summary>
 public class Timer : MonoBehaviour, TControllable, IMessenger<TimerEvent>, IMessageable<TimerEvent>, IUpdatable
 {
@@ -66,8 +67,11 @@ public class Timer : MonoBehaviour, TControllable, IMessenger<TimerEvent>, IMess
     }
 
     /// <summary>
-    /// Resets timer
+    /// Message callback that resets the timer
     /// </summary>
+    /// <param name="contentPayload">
+    /// Content payload of no relevant type
+    /// </param>
     public void Message_ResetTimer(MessageContentPayload contentPayload)
     {
         _currentTime = _startingTurnsTime;
