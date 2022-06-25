@@ -3,6 +3,10 @@ using TMPro;
 using System;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Controllable class <see cref="TUIControllable"/>, responsible for handling the
+/// damage and healing popups that appear on screen
+/// </summary>
 public class HealthPopupHandler : MonoBehaviour, TUIControllable, IMessageable<CharacterEvent>
 {
     [SerializeField]
@@ -46,6 +50,13 @@ public class HealthPopupHandler : MonoBehaviour, TUIControllable, IMessageable<C
         Disconnect?.Invoke(this);
     }
 
+    /// <summary>
+    /// Message related to when there is an update in the character's
+    /// health state and a popup needs to be shown
+    /// </summary>
+    /// <param name="contentPayload">
+    /// Content payload of type <see cref="UpdateHealthUIPayload"/>
+    /// </param>
     public void Message_ShowPopup(MessageContentPayload contentPayload)
     {
         if (contentPayload is UpdateHealthUIPayload updateHealthUIPayload)
@@ -55,6 +66,13 @@ public class HealthPopupHandler : MonoBehaviour, TUIControllable, IMessageable<C
         }
     }
 
+    /// <summary>
+    /// Spawns popup with the given value as its text content, a random 
+    /// font and a random font size
+    /// </summary>
+    /// <param name="value">
+    /// Damage/healing value to be displayed
+    /// </param>
     private void SpawnPopup(int value)
     {
         TextMeshPro spawnedPopup = Instantiate(_popupPrefab);
@@ -64,6 +82,12 @@ public class HealthPopupHandler : MonoBehaviour, TUIControllable, IMessageable<C
         SetRandomPosition(spawnedPopup.transform);
     }
 
+    /// <summary>
+    /// Gets a random font from the available fonts SO (<see cref="_availableFonts"/>)
+    /// </summary>
+    /// <returns>
+    /// Returns a random font from the available fonts given
+    /// </returns>
     private TMP_FontAsset ChooseRandomFont()
     {
         int availableFontsCount = _availableFonts.RuntimeValue.Length;
@@ -76,11 +100,25 @@ public class HealthPopupHandler : MonoBehaviour, TUIControllable, IMessageable<C
         return _availableFonts.RuntimeValue[randomIndex];
     }
 
+    /// <summary>
+    /// Gets a random font size value depending on the values given
+    /// from <see cref="_minFontSize"/> to <see cref="_maxFontSize"/>
+    /// </summary>
+    /// <returns>
+    /// Returns a random font size value
+    /// </returns>
     private float GetRandomFontSize()
     {
         return Random.Range(_minFontSize, _maxFontSize);
     }
 
+    /// <summary>
+    /// Moves popup to a position within a circle defined by the given 
+    /// parameters in <see cref="_minSpawnRadius"/> and <see cref="_maxSpawnRadius"/>
+    /// </summary>
+    /// <param name="spawnedPopupTransform">
+    /// Transform of the spawned popup
+    /// </param>
     private void SetRandomPosition(Transform spawnedPopupTransform)
     {
         Vector2 randomPosition = (Vector2)_popupHandlerTransform.position + (Random.insideUnitCircle * _maxSpawnRadius);
