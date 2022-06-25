@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// Controller class (<see cref="GenericController{T,V}"/>) responsible for controlling
+/// everything Timer related that implement the <see cref="TControllable"/>, such
+/// as the <see cref="Timer"/> class.
+/// </summary>
 public class TimerController : GenericController<TControllable, TimerEvent>, IPausable
 {
     [field: SerializeField]
