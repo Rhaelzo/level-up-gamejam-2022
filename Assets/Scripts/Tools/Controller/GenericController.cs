@@ -127,9 +127,9 @@ public abstract class GenericController<T, V> : MonoBehaviour where V : Enum
             }
         }
 
-        if (connectable is IUpdateable updateable)
+        if (connectable is IUpdatable updatable)
         {
-            _onUpdate += updateable.CustomUpdate;
+            _onUpdate += updatable.CustomUpdate;
         }
     }
 
@@ -146,9 +146,9 @@ public abstract class GenericController<T, V> : MonoBehaviour where V : Enum
             }
         }
 
-        if (connectable is IUpdateable updateable)
+        if (connectable is IUpdatable updatable)
         {
-            _onUpdate -= updateable.CustomUpdate;
+            _onUpdate -= updatable.CustomUpdate;
         }
     }
 

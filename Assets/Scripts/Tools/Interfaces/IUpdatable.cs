@@ -1,4 +1,4 @@
-public interface IUpdateable : IConnectable
+public interface IUpdatable : IConnectable
 {
     void CustomUpdate();
 }

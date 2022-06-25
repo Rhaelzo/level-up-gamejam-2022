@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Controllable class (<see cref="TControllable"/>) responsible for the enemy's AI
 /// </summary>
-public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent>, IUpdateable, IPoolUser<WordObject>
+public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent>
+    , IUpdatable, IPoolUser<WordObject>
 {
     [field: SerializeField]
     public MessageCallbackData<CharacterEvent>[] CallbackDatas { get; private set; }
@@ -33,7 +34,7 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
     public Action<IConnectable> Disconnect { get; set; }
 
     private StringBuilder _stringBuilder;
-    private const string _alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private const string _alphabet = "abcdefghijklmnopqrstuvwxyz- ";
 
     private void Awake()
     {

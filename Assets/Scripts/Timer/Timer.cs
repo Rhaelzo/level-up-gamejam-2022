@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Class responsible for handling the turn timer
 /// </summary>
-public class Timer : MonoBehaviour, TControllable, IMessenger<TimerEvent>, IMessageable<TimerEvent>, IUpdateable
+public class Timer : MonoBehaviour, TControllable, IMessenger<TimerEvent>, IMessageable<TimerEvent>, IUpdatable
 {
     [SerializeField]
     private GameEvent _endTurn;
