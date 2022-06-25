@@ -61,9 +61,9 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
 
     public void Message_StartTurn(MessageContentPayload contentPayload)
     {
-        if (contentPayload is EnemyStartTurnPayload enemyStartTurnPayload)
+        if (contentPayload is CurrentTurnPayload currentTurnPayload)
         {
-            if (enemyStartTurnPayload.Turn == Turn.Both || enemyStartTurnPayload.Turn == Turn.Enemy)
+            if (currentTurnPayload.Turn == Turn.Both || currentTurnPayload.Turn == Turn.Enemy)
             {
                 StartTurn();
             }
@@ -72,10 +72,10 @@ public class EnemyAI : MonoBehaviour, TControllable, IMessageable<CharacterEvent
 
     public void Message_OnWordFinished(MessageContentPayload contentPayload)
     {
-        if (contentPayload is EnemyOnWordFinishedPayload enemyOnWordFinishedPayload)
+        if (contentPayload is CurrentTurnPayload currentTurnPayload)
         {
-            if (enemyOnWordFinishedPayload.Turn != Turn.Enemy
-                && enemyOnWordFinishedPayload.Turn != Turn.Both)
+            if (currentTurnPayload.Turn != Turn.Enemy
+                && currentTurnPayload.Turn != Turn.Both)
             {
                 return;
             }

@@ -25,7 +25,7 @@ public class EnemyCharacterController : GameCharacterController
     {
         if (eventData is Turn currentTurn)
         {
-            SendCustomMessage(CharacterEvent.EnemyAITurnStart, new EnemyStartTurnPayload(currentTurn));
+            SendCustomMessage(CharacterEvent.EnemyAITurnStart, new CurrentTurnPayload(currentTurn));
             return;
         }
         Debug.LogError("Received value is not a turn.");
@@ -43,7 +43,7 @@ public class EnemyCharacterController : GameCharacterController
             if (dataArray[1] is int value && dataArray[2] is CharacterType targetType)
             {
                 SendCustomMessage(CharacterEvent.UpdateHealth, new UpdateHealthPayload(targetType, value));
-                SendCustomMessage(CharacterEvent.EnemyAIWordFinished, new EnemyOnWordFinishedPayload(_turnVariableSO.RuntimeValue));
+                SendCustomMessage(CharacterEvent.EnemyAIWordFinished, new CurrentTurnPayload(_turnVariableSO.RuntimeValue));
                 return;
             }
             Debug.LogError("Received value is invalid.");
